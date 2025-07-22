@@ -1,0 +1,163 @@
+[
+    {
+      "id": 1,
+      "name": "Manish ES",
+      "role": "Project Lead & M.Tech Research Scholar",
+      "department": "Mechatronics",
+      "email": "manish.es@nitk.edu.in",
+      "status": "active",
+      "expertise": [
+        "Autonomous Systems",
+        "Stochastic Modeling", 
+        "ROS2/Autoware",
+        "Machine Learning",
+        "Sensor Fusion"
+      ],
+      "currentTask": "Stochastic pedestrian behavior model development",
+      "progress": 75,
+      "joinDate": "2024-08-01",
+      "avatar": "assets/images/team/manish.jpg",
+      "contact": "+91-9876543210",
+      "researchFocus": "End-to-end autonomous driving with uncertainty modeling"
+    },
+    {
+      "id": 2,
+      "name": "Dr. K.V Gangadharan",
+      "role": "Research Supervisor",
+      "department": "Mechanical Engineering",
+      "email": "kvg@nitk.edu.in",
+      "status": "active",
+      "expertise": [
+        "Robotics",
+        "Control Systems",
+        "Vehicle Dynamics",
+        "Research Methodology"
+      ],
+      "currentTask": "Research supervision and technical guidance",
+      "progress": 100,
+      "joinDate": "2024-08-01",
+      "avatar": "assets/images/team/prof-kvg.jpg",
+      "contact": "kvg@nitk.edu.in",
+      "researchFocus": "Advanced robotics and autonomous systems"
+    },
+    {
+      "id": 3,
+      "name": "Dr. Pruthviraj U",
+      "role": "Co-Supervisor",
+      "department": "Mechanical Engineering", 
+      "email": "pruthviraj@nitk.edu.in",
+      "status": "active",
+      "expertise": [
+        "Mechatronics",
+        "Industrial Automation",
+        "Embedded Systems",
+        "Vehicle Integration"
+      ],
+      "currentTask": "Hardware integration and system validation",
+      "progress": 90,
+      "joinDate": "2024-08-01",
+      "avatar": "assets/images/team/prof-pruthvi.jpg",
+      "contact": "pruthviraj@nitk.edu.in",
+      "researchFocus": "Mechatronic systems and automation"
+    },
+    {
+      "id": 4,
+      "name": "Arjun Kumar",
+      "role": "Electronics Engineer",
+      "department": "Electronics & Communication",
+      "email": "arjun.kumar@nitk.edu.in",
+      "status": "active",
+      "expertise": [
+        "Sensor Integration",
+        "PCB Design",
+        "Signal Processing",
+        "Hardware Debugging"
+      ],
+      "currentTask": "LiDAR and camera calibration",
+      "progress": 85,
+      "joinDate": "2024-09-01",
+      "avatar": "assets/images/team/arjun.jpg",
+      "contact": "+91-9876543211",
+      "researchFocus": "Sensor fusion for autonomous vehicles"
+    },
+    {
+      "id": 5,
+      "name": "Priya Sharma",
+      "role": "Software Engineer",
+      "department": "Computer Science",
+      "email": "priya.sharma@nitk.edu.in", 
+      "status": "active",
+      "expertise": [
+        "ROS2",
+        "Python/C++",
+        "Computer Vision",
+        "Deep Learning"
+      ],
+      "currentTask": "Autoware stack integration",
+      "progress": 80,
+      "joinDate": "2024-09-15",
+      "avatar": "assets/images/team/priya.jpg",
+      "contact": "+91-9876543212",
+      "researchFocus": "Vision-based perception systems"
+    },
+    {
+      "id": 6,
+      "name": "Rajesh Nair",
+      "role": "Mechanical Engineer",
+      "department": "Mechanical Engineering",
+      "email": "rajesh.nair@nitk.edu.in",
+      "status": "active", 
+      "expertise": [
+        "Vehicle Dynamics",
+        "CAD Design",
+        "Manufacturing",
+        "System Integration"
+      ],
+      "currentTask": "Vehicle platform modifications",
+      "progress": 95,
+      "joinDate": "2024-08-15",
+      "avatar": "assets/images/team/rajesh.jpg",
+      "contact": "+91-9876543213",
+      "researchFocus": "Autonomous vehicle platform design"
+    },
+    {
+      "id": 7,
+      "name": "Sneha Reddy",
+      "role": "Research Assistant",
+      "department": "Information Technology",
+      "email": "sneha.reddy@nitk.edu.in",
+      "status": "active",
+      "expertise": [
+        "Data Analysis",
+        "Machine Learning",
+        "Statistical Modeling",
+        "Python"
+      ],
+      "currentTask": "Data collection and processing",
+      "progress": 70,
+      "joinDate": "2024-10-01",
+      "avatar": "assets/images/team/sneha.jpg",
+      "contact": "+91-9876543214",
+      "researchFocus": "Behavioral data analysis"
+    },
+    {
+      "id": 8,
+      "name": "Karthik Bhat",
+      "role": "Testing Engineer",
+      "department": "Mechatronics",
+      "email": "karthik.bhat@nitk.edu.in",
+      "status": "active",
+      "expertise": [
+        "System Testing",
+        "Validation",
+        "Safety Protocols",
+        "Documentation"
+      ],
+      "currentTask": "Safety system validation",
+      "progress": 60,
+      "joinDate": "2024-11-01", 
+      "avatar": "assets/images/team/karthik.jpg",
+      "contact": "+91-9876543215",
+      "researchFocus": "Autonomous vehicle safety systems"
+    }
+  ]

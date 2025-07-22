@@ -1,0 +1,411 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: #0a0a0a;
+    color: #ffffff;
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* Animated Background */
+.background-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    overflow: hidden;
+}
+
+.vehicle-wireframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 400px;
+    transform: translate(-50%, -50%);
+    border: 2px solid #00D4FF;
+    border-radius: 20px;
+    animation: pulse 4s ease-in-out infinite;
+}
+
+.vehicle-wireframe::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 80%;
+    height: 60%;
+    border: 1px solid #00D4FF;
+    border-radius: 10px;
+}
+
+.vehicle-wireframe::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 20%;
+    width: 60%;
+    height: 20px;
+    border: 1px solid #00A5CC;
+    border-radius: 10px 10px 0 0;
+}
+
+.sensor-dots {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.sensor-dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: sensorBlink 2s ease-in-out infinite;
+}
+
+.sensor-dot.lidar {
+    background: #00FF88;
+    top: -200px;
+    left: -10px;
+    animation-delay: 0s;
+}
+
+.sensor-dot.camera {
+    background: #FF4444;
+    top: -180px;
+    left: 100px;
+    animation-delay: 0.7s;
+}
+
+.sensor-dot.imu {
+    background: #FFAA00;
+    top: -150px;
+    left: -80px;
+    animation-delay: 1.4s;
+}
+
+.data-streams {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.stream {
+    position: absolute;
+    width: 2px;
+    height: 100px;
+    background: linear-gradient(to bottom, #00D4FF, transparent);
+    animation: dataFlow 3s linear infinite;
+}
+
+.stream-1 {
+    top: 20%;
+    left: 15%;
+    animation-delay: 0s;
+}
+
+.stream-2 {
+    top: 30%;
+    right: 20%;
+    animation-delay: 1s;
+}
+
+.stream-3 {
+    bottom: 25%;
+    left: 70%;
+    animation-delay: 2s;
+}
+
+/* Login Container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    z-index: 10;
+}
+
+.login-card {
+    background: rgba(15, 15, 15, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 20px;
+    padding: 40px;
+    width: 400px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.8s ease-out;
+}
+
+/* Header */
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #00D4FF;
+    margin-bottom: 5px;
+}
+
+.login-header h2 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.login-header p {
+    font-size: 0.9rem;
+    color: #888888;
+}
+
+/* Form Styles */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #333333;
+    color: #ffffff;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-group label {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    font-size: 1rem;
+    color: #666666;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label {
+    top: -5px;
+    font-size: 0.8rem;
+    color: #00D4FF;
+}
+
+.input-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #00D4FF;
+    transition: width 0.3s ease;
+}
+
+.input-group input:focus ~ .input-line {
+    width: 100%;
+}
+
+/* Role Selector */
+.role-selector {
+    margin: 10px 0;
+}
+
+.role-selector > label {
+    font-size: 0.9rem;
+    color: #888888;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.role-options {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.role-options input[type="radio"] {
+    display: none;
+}
+
+.role-options label {
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid #333333;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.role-options input[type="radio"]:checked + label {
+    background: rgba(0, 212, 255, 0.2);
+    border-color: #00D4FF;
+    color: #00D4FF;
+}
+
+/* Login Button */
+.login-btn {
+    position: relative;
+    background: linear-gradient(135deg, #00D4FF, #00A5CC);
+    border: none;
+    border-radius: 12px;
+    padding: 15px;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+.btn-animation {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.login-btn:hover .btn-animation {
+    left: 100%;
+}
+
+/* Error Message */
+.error-message {
+    background: rgba(255, 68, 68, 0.1);
+    border: 1px solid #FF4444;
+    border-radius: 8px;
+    padding: 12px;
+    color: #FF6666;
+    font-size: 0.9rem;
+    display: none;
+    text-align: center;
+}
+
+/* Footer */
+.login-footer {
+    margin-top: 30px;
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #222222;
+}
+
+.login-footer p {
+    font-size: 0.8rem;
+    color: #666666;
+    margin-bottom: 10px;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: #888888;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    background: #00FF88;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes sensorBlink {
+    0%, 100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 15px currentColor;
+    }
+}
+
+@keyframes dataFlow {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .login-card {
+        width: 90%;
+        padding: 30px 20px;
+    }
+    
+    .vehicle-wireframe {
+        width: 300px;
+        height: 150px;
+    }
+    
+    .role-options {
+        justify-content: center;
+    }
+}

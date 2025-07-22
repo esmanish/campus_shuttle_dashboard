@@ -1,0 +1,506 @@
+{
+    "budget": {
+      "total": 500000,
+      "allocated": 500000,
+      "spent": 375000,
+      "committed": 45000,
+      "remaining": 80000,
+      "currency": "INR",
+      "budgetPeriod": {
+        "start": "2024-08-01",
+        "end": "2025-06-30"
+      },
+      "lastUpdated": "2025-01-21T10:00:00Z"
+    },
+    "categories": {
+      "hardware": {
+        "allocated": 300000,
+        "spent": 245000,
+        "committed": 25000,
+        "remaining": 30000,
+        "percentage": 81.7,
+        "items": [
+          {
+            "id": "H001",
+            "name": "RoboSense RS-LiDAR-16",
+            "cost": 180000,
+            "quantity": 1,
+            "status": "purchased",
+            "vendor": "RoboSense",
+            "purchaseDate": "2024-09-01",
+            "warranty": "2 years",
+            "category": "perception"
+          },
+          {
+            "id": "H002", 
+            "name": "NVIDIA AGX Orin Developer Kit",
+            "cost": 85000,
+            "quantity": 1,
+            "status": "purchased",
+            "vendor": "NVIDIA",
+            "purchaseDate": "2024-10-01",
+            "warranty": "1 year",
+            "category": "processing"
+          },
+          {
+            "id": "H003",
+            "name": "IMX490 Camera Module",
+            "cost": 15000,
+            "quantity": 4,
+            "totalCost": 60000,
+            "status": "purchased",
+            "vendor": "Sony Semiconductor",
+            "purchaseDate": "2024-10-15",
+            "warranty": "1 year",
+            "category": "perception"
+          },
+          {
+            "id": "H004",
+            "name": "MTi-680G IMU/GNSS Module",
+            "cost": 45000,
+            "quantity": 1,
+            "status": "purchased", 
+            "vendor": "Xsens",
+            "purchaseDate": "2024-10-20",
+            "warranty": "2 years",
+            "category": "localization"
+          },
+          {
+            "id": "H005",
+            "name": "Custom Sensor Mounting Hardware",
+            "cost": 25000,
+            "quantity": 1,
+            "status": "committed",
+            "vendor": "Local Fabrication",
+            "expectedDelivery": "2025-02-15",
+            "category": "integration"
+          }
+        ]
+      },
+      "software": {
+        "allocated": 50000,
+        "spent": 25000,
+        "committed": 10000,
+        "remaining": 15000,
+        "percentage": 50.0,
+        "items": [
+          {
+            "id": "S001",
+            "name": "MATLAB License (Academic)",
+            "cost": 15000,
+            "quantity": 1,
+            "status": "purchased",
+            "vendor": "MathWorks",
+            "purchaseDate": "2024-09-15",
+            "validity": "1 year",
+            "category": "development"
+          },
+          {
+            "id": "S002",
+            "name": "Cloud Computing Credits (AWS)",
+            "cost": 10000,
+            "quantity": 1,
+            "status": "purchased",
+            "vendor": "Amazon Web Services", 
+            "purchaseDate": "2024-11-01",
+            "usage": "Model training",
+            "category": "computation"
+          },
+          {
+            "id": "S003",
+            "name": "PyTorch Professional Support",
+            "cost": 10000,
+            "quantity": 1,
+            "status": "committed",
+            "vendor": "PyTorch Foundation",
+            "expectedDate": "2025-02-01",
+            "category": "development"
+          }
+        ]
+      },
+      "fabrication": {
+        "allocated": 100000,
+        "spent": 75000,
+        "committed": 15000,
+        "remaining": 10000,
+        "percentage": 75.0,
+        "items": [
+          {
+            "id": "F001",
+            "name": "Vehicle Platform Modifications",
+            "cost": 45000,
+            "quantity": 1,
+            "status": "completed",
+            "vendor": "Local Auto Workshop",
+            "completionDate": "2024-09-30",
+            "category": "vehicle"
+          },
+          {
+            "id": "F002",
+            "name": "Aluminum Mounting Framework",
+            "cost": 20000,
+            "quantity": 1,
+            "status": "completed",
+            "vendor": "Precision Fabricators",
+            "completionDate": "2024-10-10",
+            "category": "mounting"
+          },
+          {
+            "id": "F003", 
+            "name": "Electrical Wiring Harness",
+            "cost": 10000,
+            "quantity": 1,
+            "status": "completed",
+            "vendor": "Auto Electronics",
+            "completionDate": "2024-10-25",
+            "category": "electrical"
+          },
+          {
+            "id": "F004",
+            "name": "Weatherproofing Materials",
+            "cost": 15000,
+            "quantity": 1,
+            "status": "committed",
+            "vendor": "Industrial Supplies",
+            "expectedDelivery": "2025-02-01",
+            "category": "protection"
+          }
+        ]
+      },
+      "research": {
+        "allocated": 50000,
+        "spent": 30000,
+        "committed": 8000,
+        "remaining": 12000,
+        "percentage": 60.0,
+        "items": [
+          {
+            "id": "R001",
+            "name": "Conference Registration (IEEE ICRA 2025)",
+            "cost": 15000,
+            "quantity": 1,
+            "status": "committed",
+            "vendor": "IEEE",
+            "conference": "ICRA 2025",
+            "location": "Atlanta, USA",
+            "category": "conference"
+          },
+          {
+            "id": "R002",
+            "name": "Publication Fees",
+            "cost": 10000,
+            "quantity": 2,
+            "status": "purchased",
+            "vendor": "IEEE",
+            "papers": ["ARSO 2024"],
+            "category": "publication"
+          },
+          {
+            "id": "R003",
+            "name": "Research Materials & Consumables",
+            "cost": 5000,
+            "quantity": 1,
+            "status": "purchased",
+            "vendor": "Various",
+            "period": "2024-2025",
+            "category": "materials"
+          },
+          {
+            "id": "R004",
+            "name": "Data Storage & Backup",
+            "cost": 8000,
+            "quantity": 1,
+            "status": "committed",
+            "vendor": "Cloud Storage Provider",
+            "capacity": "10TB",
+            "category": "storage"
+          }
+        ]
+      }
+    },
+    "purchaseOrders": [
+      {
+        "poNumber": "PO-2024-001",
+        "vendor": "RoboSense",
+        "item": "RS-LiDAR-16 Sensor",
+        "amount": 180000,
+        "status": "delivered",
+        "orderDate": "2024-09-01",
+        "deliveryDate": "2024-09-15",
+        "paymentStatus": "paid",
+        "paymentDate": "2024-09-20",
+        "invoice": "INV-RS-2024-001"
+      },
+      {
+        "poNumber": "PO-2024-002",
+        "vendor": "NVIDIA",
+        "item": "AGX Orin Developer Kit",
+        "amount": 85000,
+        "status": "delivered",
+        "orderDate": "2024-10-01",
+        "deliveryDate": "2024-10-10",
+        "paymentStatus": "paid",
+        "paymentDate": "2024-10-15",
+        "invoice": "INV-NV-2024-001"
+      },
+      {
+        "poNumber": "PO-2024-003",
+        "vendor": "Sony Semiconductor",
+        "item": "IMX490 Camera Modules (4x)",
+        "amount": 60000,
+        "status": "delivered",
+        "orderDate": "2024-10-15",
+        "deliveryDate": "2024-10-28",
+        "paymentStatus": "paid",
+        "paymentDate": "2024-11-02",
+        "invoice": "INV-SN-2024-001"
+      },
+      {
+        "poNumber": "PO-2024-004",
+        "vendor": "Xsens",
+        "item": "MTi-680G IMU/GNSS Module",
+        "amount": 45000,
+        "status": "delivered",
+        "orderDate": "2024-10-20",
+        "deliveryDate": "2024-11-05",
+        "paymentStatus": "paid",
+        "paymentDate": "2024-11-10",
+        "invoice": "INV-XS-2024-001"
+      },
+      {
+        "poNumber": "PO-2025-001",
+        "vendor": "Local Fabrication",
+        "item": "Custom Mounting Hardware",
+        "amount": 25000,
+        "status": "ordered",
+        "orderDate": "2025-01-15",
+        "expectedDelivery": "2025-02-15",
+        "paymentStatus": "advance_paid",
+        "advanceAmount": 12500
+      }
+    ],
+    "expenses": [
+      {
+        "date": "2024-09-01",
+        "category": "hardware",
+        "description": "RoboSense LiDAR purchase",
+        "amount": 180000,
+        "vendor": "RoboSense",
+        "poNumber": "PO-2024-001",
+        "approvedBy": "Dr. K.V Gangadharan"
+      },
+      {
+        "date": "2024-10-01",
+        "category": "hardware", 
+        "description": "NVIDIA AGX Orin purchase",
+        "amount": 85000,
+        "vendor": "NVIDIA",
+        "poNumber": "PO-2024-002",
+        "approvedBy": "Dr. K.V Gangadharan"
+      },
+      {
+        "date": "2024-10-15",
+        "category": "hardware",
+        "description": "Camera modules purchase",
+        "amount": 60000,
+        "vendor": "Sony Semiconductor", 
+        "poNumber": "PO-2024-003",
+        "approvedBy": "Dr. Pruthviraj U"
+      },
+      {
+        "date": "2024-10-20",
+        "category": "hardware",
+        "description": "IMU/GNSS module purchase", 
+        "amount": 45000,
+        "vendor": "Xsens",
+        "poNumber": "PO-2024-004",
+        "approvedBy": "Dr. K.V Gangadharan"
+      }
+    ],
+    "monthlyExpenses": [
+      {
+        "month": "2024-08",
+        "hardware": 0,
+        "software": 0,
+        "fabrication": 15000,
+        "research": 5000,
+        "total": 20000
+      },
+      {
+        "month": "2024-09", 
+        "hardware": 180000,
+        "software": 15000,
+        "fabrication": 45000,
+        "research": 0,
+        "total": 240000
+      },
+      {
+        "month": "2024-10",
+        "hardware": 145000,
+        "software": 0,
+        "fabrication": 30000,
+        "research": 10000,
+        "total": 185000
+      },
+      {
+        "month": "2024-11",
+        "hardware": 0,
+        "software": 10000,
+        "fabrication": 10000,
+        "research": 5000,
+        "total": 25000
+      },
+      {
+        "month": "2024-12",
+        "hardware": 0,
+        "software": 0,
+        "fabrication": 0,
+        "research": 10000,
+        "total": 10000
+      },
+      {
+        "month": "2025-01",
+        "hardware": 12500,
+        "software": 0,
+        "fabrication": 0,
+        "research": 0,
+        "total": 12500
+      }
+    ],
+    "budgetAnalysis": {
+      "burnRate": {
+        "monthly": 41250,
+        "weekly": 10312,
+        "daily": 1473
+      },
+      "projectedCompletion": {
+        "atCurrentRate": "2025-03-15",
+        "budgetExhaustion": "2025-03-30"
+      },
+      "categories": {
+        "onTrack": ["software", "research"],
+        "overBudget": ["hardware"],
+        "underUtilized": ["fabrication"]
+      },
+      "recommendations": [
+        "Monitor hardware spending closely",
+        "Accelerate fabrication activities", 
+        "Consider reallocating from software to hardware if needed",
+        "Plan for conference travel expenses"
+      ]
+    },
+    "costBreakdown": {
+      "byCategory": {
+        "hardware": 65.3,
+        "fabrication": 20.0,
+        "research": 8.0,
+        "software": 6.7
+      },
+      "byVendor": {
+        "RoboSense": 36.0,
+        "NVIDIA": 17.0,
+        "Sony Semiconductor": 12.0,
+        "Xsens": 9.0,
+        "Others": 26.0
+      },
+      "byQuarter": {
+        "Q3-2024": 445000,
+        "Q4-2024": 35000,
+        "Q1-2025": 12500,
+        "Q2-2025": 7500
+      }
+    },
+    "funding": {
+      "sources": [
+        {
+          "source": "NITK Research Grant", 
+          "amount": 300000,
+          "type": "institutional",
+          "status": "approved"
+        },
+        {
+          "source": "SERB Student Research Grant",
+          "amount": 150000,
+          "type": "government",
+          "status": "approved"
+        },
+        {
+          "source": "Industry Collaboration (Future)",
+          "amount": 50000,
+          "type": "industry",
+          "status": "potential"
+        }
+      ],
+      "disbursement": [
+        {
+          "date": "2024-08-01",
+          "amount": 200000,
+          "source": "NITK Research Grant",
+          "status": "received"
+        },
+        {
+          "date": "2024-10-01", 
+          "amount": 150000,
+          "source": "SERB Grant",
+          "status": "received"
+        },
+        {
+          "date": "2024-12-01",
+          "amount": 100000,
+          "source": "NITK Research Grant",
+          "status": "received"
+        },
+        {
+          "date": "2025-03-01",
+          "amount": 50000,
+          "source": "Final disbursement",
+          "status": "scheduled"
+        }
+      ]
+    },
+    "audit": {
+      "lastAudit": "2024-12-31",
+      "nextAudit": "2025-03-31",
+      "auditor": "NITK Finance Department",
+      "compliance": "satisfactory",
+      "recommendations": [
+        "Maintain detailed purchase receipts",
+        "Regular budget reviews",
+        "Proper vendor documentation"
+      ]
+    },
+    "insurance": [
+      {
+        "type": "Equipment Insurance",
+        "coverage": 400000,
+        "premium": 12000,
+        "provider": "Oriental Insurance",
+        "policyNumber": "EQ-2024-001",
+        "validity": "2024-09-01 to 2025-09-01",
+        "status": "active"
+      },
+      {
+        "type": "Public Liability Insurance",
+        "coverage": 1000000,
+        "premium": 8000,
+        "provider": "New India Assurance",
+        "policyNumber": "PL-2024-001", 
+        "validity": "2024-08-01 to 2025-08-01",
+        "status": "active"
+      }
+    ],
+    "roi": {
+      "expectedBenefits": [
+        "Advanced research capabilities",
+        "Publications and patent potential", 
+        "Industry collaboration opportunities",
+        "Student training and skill development"
+      ],
+      "intangibleBenefits": [
+        "NITK reputation enhancement",
+        "Research lab establishment",
+        "Future funding opportunities",
+        "International collaboration potential"
+      ]
+    }
+  }

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NITK Autonomous Systems Lab - Login</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background-animation">
+        <div class="vehicle-wireframe"></div>
+        <div class="sensor-dots">
+            <div class="sensor-dot lidar"></div>
+            <div class="sensor-dot camera"></div>
+            <div class="sensor-dot imu"></div>
+        </div>
+        <div class="data-streams">
+            <div class="stream stream-1"></div>
+            <div class="stream stream-2"></div>
+            <div class="stream stream-3"></div>
+        </div>
+    </div>
+
+    <!-- Login Container -->
+    <div class="login-container">
+        <div class="login-card">
+            <!-- Header -->
+            <div class="login-header">
+                <h1>NITK</h1>
+                <h2>Autonomous Systems Lab</h2>
+                <p>EGO Vehicle Development Tracker</p>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="login-form">
+                <div class="input-group">
+                    <input type="text" id="username" required>
+                    <label for="username">Username</label>
+                    <div class="input-line"></div>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="password" required>
+                    <label for="password">Password</label>
+                    <div class="input-line"></div>
+                </div>
+
+                <div class="role-selector">
+                    <label>Login as:</label>
+                    <div class="role-options">
+                        <input type="radio" id="engineer" name="role" value="engineer" checked>
+                        <label for="engineer">Engineer</label>
+                        
+                        <input type="radio" id="professor" name="role" value="professor">
+                        <label for="professor">Professor</label>
+                        
+                        <input type="radio" id="lead" name="role" value="lead">
+                        <label for="lead">Project Lead</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="login-btn">
+                    <span>Access System</span>
+                    <div class="btn-animation"></div>
+                </button>
+
+                <div class="error-message" id="errorMessage"></div>
+            </form>
+
+            <!-- Footer -->
+            <div class="login-footer">
+                <p>NITK Surathkal • Autonomous Vehicle Research</p>
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    <span>System Online</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/auth.js"></script>
+</body>
+</html>

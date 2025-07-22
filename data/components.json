@@ -1,0 +1,463 @@
+{
+    "perception": {
+      "lidar": {
+        "name": "RoboSense RS-LiDAR-16",
+        "model": "RS-LiDAR-16",
+        "status": "online",
+        "health": 95,
+        "lastUpdate": "2025-01-21T08:30:00Z",
+        "specifications": {
+          "channels": 16,
+          "range": "150m",
+          "accuracy": "±2cm",
+          "fov": "360°×30°",
+          "pointRate": "300,000 points/sec",
+          "wavelength": "905nm",
+          "powerConsumption": "8W",
+          "operatingTemp": "-40°C to +60°C"
+        },
+        "currentMetrics": {
+          "temperature": 42,
+          "rpm": 600,
+          "pointsPerSecond": 295000,
+          "dataRate": "1.2 Mbps",
+          "uptime": "1,248 hours"
+        },
+        "calibration": {
+          "lastCalibrated": "2024-10-25T14:30:00Z",
+          "calibrationType": "Factory + Field",
+          "accuracy": "±1.8cm",
+          "status": "valid"
+        },
+        "alerts": [
+          {
+            "level": "info",
+            "message": "Scheduled maintenance due in 7 days",
+            "timestamp": "2025-01-21T08:00:00Z"
+          }
+        ]
+      },
+      "cameras": {
+        "name": "IMX490 Camera Array",
+        "model": "IMX490",
+        "status": "online", 
+        "health": 98,
+        "lastUpdate": "2025-01-21T08:15:00Z",
+        "specifications": {
+          "resolution": "1920×1536",
+          "fps": 30,
+          "count": 4,
+          "hdr": true,
+          "bitDepth": "12-bit",
+          "sensorSize": "1/2.3 inch",
+          "fov": "120° diagonal",
+          "sensitivity": "ISO 100-25600"
+        },
+        "currentMetrics": {
+          "activeCameras": 4,
+          "averageFps": 29.8,
+          "dataRate": "48 Mbps",
+          "temperature": 38,
+          "exposureTime": "10ms"
+        },
+        "cameraDetails": [
+          {
+            "id": "front",
+            "position": "front bumper",
+            "status": "online",
+            "health": 99,
+            "coverage": "forward 120°"
+          },
+          {
+            "id": "rear", 
+            "position": "rear bumper",
+            "status": "online",
+            "health": 97,
+            "coverage": "backward 120°"
+          },
+          {
+            "id": "left",
+            "position": "left side",
+            "status": "online",
+            "health": 98,
+            "coverage": "left side 120°"
+          },
+          {
+            "id": "right",
+            "position": "right side", 
+            "status": "online",
+            "health": 96,
+            "coverage": "right side 120°"
+          }
+        ],
+        "alerts": []
+      },
+      "imu": {
+        "name": "MTi-680G IMU/GNSS",
+        "model": "MTi-680G",
+        "status": "online",
+        "health": 92,
+        "lastUpdate": "2025-01-21T08:45:00Z",
+        "specifications": {
+          "gyro": "±2000°/s",
+          "accelerometer": "±16g",
+          "magnetometer": "±8 Gauss",
+          "gnss": "GPS/GLONASS/Galileo/BeiDou",
+          "frequency": "100Hz",
+          "accuracy": {
+            "position": "<1m",
+            "attitude": "0.2°",
+            "heading": "0.5°"
+          }
+        },
+        "currentMetrics": {
+          "satellitesVisible": 12,
+          "hdop": 0.8,
+          "temperature": 45,
+          "dataRate": "10 kbps",
+          "lastGpsFix": "2025-01-21T08:44:30Z"
+        },
+        "calibration": {
+          "lastCalibrated": "2024-10-25T16:00:00Z",
+          "magneticCalibration": "completed",
+          "status": "valid"
+        },
+        "alerts": [
+          {
+            "level": "warning",
+            "message": "GPS accuracy reduced due to cloud cover",
+            "timestamp": "2025-01-21T08:30:00Z"
+          }
+        ]
+      }
+    },
+    "processing": {
+      "agx": {
+        "name": "NVIDIA AGX Orin",
+        "model": "AGX Orin 64GB",
+        "status": "active", 
+        "health": 87,
+        "lastUpdate": "2025-01-21T08:50:00Z",
+        "specifications": {
+          "cpu": "12-core ARM Cortex-A78AE",
+          "gpu": "2048-core NVIDIA Ampere GPU",
+          "memory": "64GB LPDDR5",
+          "storage": "64GB eUFS + 1TB NVMe SSD",
+          "aiPerformance": "275 TOPS",
+          "powerConsumption": "60W",
+          "tensorrtSupport": true
+        },
+        "currentMetrics": {
+          "cpuUsage": 45,
+          "gpuUsage": 62,
+          "memoryUsage": 38,
+          "temperature": 65,
+          "powerDraw": 48,
+          "storageUsed": 45,
+          "uptime": "156 hours"
+        },
+        "processes": [
+          {
+            "name": "autoware_launch",
+            "pid": 1234,
+            "cpuUsage": 25,
+            "memoryUsage": 15
+          },
+          {
+            "name": "stochastic_model",
+            "pid": 2345,
+            "cpuUsage": 12,
+            "memoryUsage": 8
+          },
+          {
+            "name": "sensor_fusion",
+            "pid": 3456,
+            "cpuUsage": 8,
+            "memoryUsage": 12
+          }
+        ],
+        "alerts": [
+          {
+            "level": "info",
+            "message": "High GPU utilization during model inference",
+            "timestamp": "2025-01-21T08:30:00Z"
+          }
+        ]
+      }
+    },
+    "vehicle": {
+      "platform": {
+        "name": "Mahindra Reva i",
+        "model": "Reva i",
+        "status": "ready",
+        "health": 90,
+        "lastUpdate": "2025-01-20T16:20:00Z",
+        "specifications": {
+          "motor": "15KW PMSM 6-phase",
+          "controller": "72V Controller Kit", 
+          "battery": "72V Li-ion 20kWh",
+          "weight": "665kg",
+          "dimensions": {
+            "length": "3.1m",
+            "width": "1.5m", 
+            "height": "1.6m",
+            "wheelbase": "2.23m"
+          },
+          "performance": {
+            "maxSpeed": "80 kmph",
+            "range": "120 km",
+            "chargingTime": "8 hours"
+          }
+        },
+        "currentMetrics": {
+          "batteryLevel": 78,
+          "batteryVoltage": 71.2,
+          "motorTemp": 42,
+          "controllerTemp": 38,
+          "odometer": "2,347 km",
+          "efficiency": "6.2 km/kWh"
+        },
+        "modifications": [
+          {
+            "component": "Roof mounting system",
+            "description": "Custom aluminum frame for sensor mounting",
+            "status": "completed"
+          },
+          {
+            "component": "Power distribution",
+            "description": "12V/24V DC-DC converters for sensors", 
+            "status": "completed"
+          },
+          {
+            "component": "Wiring harness",
+            "description": "Custom harness for sensor and compute integration",
+            "status": "completed"
+          },
+          {
+            "component": "Safety shutdown",
+            "description": "Emergency stop system for testing",
+            "status": "completed"
+          }
+        ],
+        "alerts": [
+          {
+            "level": "info",
+            "message": "Scheduled battery maintenance in 30 days",
+            "timestamp": "2025-01-20T10:00:00Z"
+          }
+        ]
+      }
+    },
+    "software": {
+      "autoware": {
+        "name": "Autoware Framework",
+        "version": "2.0.1",
+        "status": "running",
+        "health": 85,
+        "lastUpdate": "2025-01-21T07:00:00Z",
+        "modules": [
+          {
+            "name": "perception",
+            "status": "running",
+            "health": 88,
+            "cpuUsage": 15,
+            "memoryUsage": 2.1
+          },
+          {
+            "name": "localization", 
+            "status": "running",
+            "health": 92,
+            "cpuUsage": 8,
+            "memoryUsage": 1.5
+          },
+          {
+            "name": "planning",
+            "status": "running", 
+            "health": 82,
+            "cpuUsage": 12,
+            "memoryUsage": 1.8
+          },
+          {
+            "name": "control",
+            "status": "running",
+            "health": 90,
+            "cpuUsage": 5,
+            "memoryUsage": 0.8
+          }
+        ],
+        "performance": {
+          "processingLatency": "45ms",
+          "planningFrequency": "10Hz",
+          "controlFrequency": "100Hz",
+          "memoryFootprint": "6.2 GB"
+        },
+        "alerts": [
+          {
+            "level": "warning",
+            "message": "Planning module experiencing occasional delays",
+            "timestamp": "2025-01-21T07:30:00Z"
+          }
+        ]
+      },
+      "stochastic_model": {
+        "name": "Pedestrian Prediction Model",
+        "version": "0.8.2",
+        "status": "development",
+        "health": 75,
+        "lastUpdate": "2025-01-20T14:15:00Z",
+        "specifications": {
+          "architecture": "Neural Network",
+          "framework": "PyTorch",
+          "inputFeatures": [
+            "position (x, y)",
+            "velocity (vx, vy)",
+            "head orientation (θ)",
+            "context features"
+          ],
+          "outputs": [
+            "crossing probability",
+            "trajectory distribution", 
+            "uncertainty bounds"
+          ]
+        },
+        "performance": {
+          "accuracy": 78.5,
+          "precision": 82.1,
+          "recall": 74.8,
+          "f1Score": 78.3,
+          "inferenceTime": "12ms",
+          "modelSize": "45.2 MB"
+        },
+        "training": {
+          "trainingData": "1,200 pedestrian interactions",
+          "validationAccuracy": 76.2,
+          "lastTrained": "2025-01-18T20:00:00Z",
+          "epochs": 150,
+          "batchSize": 32
+        },
+        "alerts": [
+          {
+            "level": "info",
+            "message": "Model retraining scheduled for next week",
+            "timestamp": "2025-01-20T12:00:00Z"
+          }
+        ]
+      },
+      "ros2": {
+        "name": "ROS2 Humble",
+        "version": "22.04",
+        "status": "running",
+        "health": 94,
+        "lastUpdate": "2025-01-21T06:00:00Z",
+        "nodes": [
+          {
+            "name": "lidar_driver",
+            "status": "running", 
+            "publishRate": "10Hz"
+          },
+          {
+            "name": "camera_driver",
+            "status": "running",
+            "publishRate": "30Hz"
+          },
+          {
+            "name": "imu_driver",
+            "status": "running",
+            "publishRate": "100Hz"
+          },
+          {
+            "name": "sensor_fusion",
+            "status": "running",
+            "publishRate": "10Hz"
+          }
+        ],
+        "topics": 45,
+        "services": 28,
+        "bagFiles": "2.3 TB recorded data",
+        "alerts": []
+      }
+    },
+    "communication": {
+      "ethernet": {
+        "name": "Gigabit Ethernet",
+        "status": "connected",
+        "health": 100,
+        "bandwidth": "1 Gbps",
+        "latency": "2ms",
+        "packetLoss": 0.01
+      },
+      "wifi": {
+        "name": "802.11ac WiFi",
+        "status": "connected", 
+        "health": 85,
+        "signalStrength": -45,
+        "bandwidth": "300 Mbps",
+        "network": "NITK_Research"
+      },
+      "can": {
+        "name": "CAN Bus",
+        "status": "active",
+        "health": 92,
+        "baudRate": "500 kbps",
+        "errors": 3,
+        "busLoad": 35
+      }
+    },
+    "power": {
+      "main": {
+        "name": "Main Vehicle Battery",
+        "status": "charging",
+        "health": 88,
+        "voltage": 71.2,
+        "current": 15.8,
+        "stateOfCharge": 78,
+        "temperature": 32,
+        "cycleCount": 245
+      },
+      "auxiliary": {
+        "name": "12V Auxiliary Battery",
+        "status": "good",
+        "health": 95,
+        "voltage": 12.4,
+        "current": 8.2,
+        "stateOfCharge": 85,
+        "temperature": 28
+      },
+      "converters": [
+        {
+          "name": "24V DC-DC Converter",
+          "status": "active",
+          "outputVoltage": 24.1,
+          "outputCurrent": 5.2,
+          "efficiency": 92
+        },
+        {
+          "name": "12V DC-DC Converter", 
+          "status": "active",
+          "outputVoltage": 12.0,
+          "outputCurrent": 8.5,
+          "efficiency": 89
+        }
+      ]
+    },
+    "systemHealth": {
+      "overall": 89,
+      "perception": 95,
+      "processing": 87,
+      "vehicle": 90,
+      "software": 83,
+      "communication": 92,
+      "power": 90,
+      "lastHealthCheck": "2025-01-21T08:00:00Z",
+      "alerts": {
+        "critical": 0,
+        "warning": 2,
+        "info": 4
+      },
+      "recommendations": [
+        "Monitor planning module performance",
+        "Schedule LiDAR maintenance",
+        "Update stochastic model with new data"
+      ]
+    }
+  }

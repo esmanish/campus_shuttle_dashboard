@@ -1,0 +1,405 @@
+{
+    "currentResearch": {
+      "title": "Development of a System for End-to-End Autonomous Driving Research: A Case Study at NITK Campus",
+      "subtitle": "Stochastic Pedestrian Behavior Modeling for Unstructured Traffic Environments",
+      "description": "This research focuses on developing and validating a comprehensive autonomous driving system capable of handling unstructured traffic environments using stochastic behavioral modeling approaches, specifically designed for university campus scenarios.",
+      "status": "active",
+      "progress": 68,
+      "startDate": "2024-08-01",
+      "expectedCompletion": "2025-06-30",
+      "fundingAmount": 500000,
+      "currency": "INR",
+      "keywords": [
+        "Autonomous Driving",
+        "Stochastic Modeling",
+        "Pedestrian Prediction",
+        "Unstructured Traffic",
+        "Campus Environment",
+        "ROS2",
+        "Autoware",
+        "Machine Learning"
+      ],
+      "objectives": [
+        {
+          "id": 1,
+          "objective": "Develop EGO vehicle platform with comprehensive sensor setup",
+          "status": "completed",
+          "progress": 100,
+          "completionDate": "2024-10-30"
+        },
+        {
+          "id": 2, 
+          "objective": "Create high-fidelity simulation environment of campus region",
+          "status": "completed",
+          "progress": 100,
+          "completionDate": "2024-12-10"
+        },
+        {
+          "id": 3,
+          "objective": "Design pedestrian crossing intent predictor using stochastic modeling",
+          "status": "in-progress",
+          "progress": 75,
+          "expectedCompletion": "2025-02-28"
+        },
+        {
+          "id": 4,
+          "objective": "Incorporate real-time campus behavioral data from EGO vehicle sensors",
+          "status": "in-progress", 
+          "progress": 60,
+          "expectedCompletion": "2025-03-15"
+        },
+        {
+          "id": 5,
+          "objective": "Test stochastic model in both simulation and real campus environment",
+          "status": "scheduled",
+          "progress": 0,
+          "scheduledStart": "2025-03-01"
+        },
+        {
+          "id": 6,
+          "objective": "Performance analysis and system validation",
+          "status": "scheduled",
+          "progress": 0,
+          "scheduledStart": "2025-04-15"
+        }
+      ]
+    },
+    "publications": [
+      {
+        "id": 1,
+        "title": "Stochastic Modeling for Pedestrian Crossing Prediction in Autonomous Vehicles: A Campus Environment Study",
+        "authors": [
+          "Manish ES",
+          "Dr. K.V Gangadharan", 
+          "Dr. Pruthviraj U"
+        ],
+        "type": "conference_paper",
+        "status": "under_review",
+        "targetVenue": "IEEE International Conference on Robotics and Automation (ICRA 2025)",
+        "submissionDate": "2024-12-01",
+        "abstract": "This paper presents a novel stochastic approach for predicting pedestrian crossing intentions in unstructured campus environments. The proposed method integrates multi-modal sensor data to generate probabilistic trajectory predictions with uncertainty quantification.",
+        "keywords": [
+          "Pedestrian prediction",
+          "Stochastic modeling",
+          "Autonomous driving",
+          "Uncertainty quantification"
+        ],
+        "reviewStatus": {
+          "submitted": "2024-12-01",
+          "underReview": true,
+          "reviewComments": "Pending",
+          "expectedDecision": "2025-03-01"
+        }
+      },
+      {
+        "id": 2,
+        "title": "Autonomous Driving in Unstructured Environments: A Comprehensive System for Campus Navigation",
+        "authors": [
+          "Manish ES",
+          "Dr. K.V Gangadharan",
+          "Dr. Pruthviraj U"
+        ],
+        "type": "journal_paper",
+        "status": "draft",
+        "targetVenue": "IEEE Transactions on Intelligent Transportation Systems",
+        "plannedSubmission": "2025-03-15",
+        "abstract": "A comprehensive overview of the end-to-end autonomous driving system developed for campus environments, including system architecture, sensor integration, and real-world deployment challenges.",
+        "keywords": [
+          "Autonomous driving",
+          "System architecture",
+          "Campus navigation",
+          "Sensor fusion"
+        ],
+        "progress": {
+          "writing": 65,
+          "experiments": 80,
+          "dataAnalysis": 70
+        }
+      },
+      {
+        "id": 3,
+        "title": "Real-time Sensor Fusion for Autonomous Vehicle Perception in Campus Environments",
+        "authors": [
+          "Arjun Kumar",
+          "Priya Sharma",
+          "Manish ES"
+        ],
+        "type": "workshop_paper",
+        "status": "accepted",
+        "venue": "IEEE Workshop on Advanced Robotics and its Social Impacts (ARSO 2024)",
+        "presentationDate": "2024-11-15",
+        "abstract": "This work presents a sensor fusion framework combining LiDAR, camera, and IMU data for robust perception in dynamic campus environments.",
+        "keywords": [
+          "Sensor fusion",
+          "Perception",
+          "Real-time processing"
+        ]
+      },
+      {
+        "id": 4,
+        "title": "M.Tech Thesis: Development of Stochastic Behavioral Models for Autonomous Vehicle Navigation",
+        "authors": [
+          "Manish ES"
+        ],
+        "type": "thesis",
+        "status": "in_preparation",
+        "expectedSubmission": "2025-05-30",
+        "defenseDate": "2025-06-30",
+        "abstract": "Complete documentation of the research work including literature review, methodology, implementation, results, and future work recommendations.",
+        "chapters": [
+          {
+            "chapter": 1,
+            "title": "Introduction and Literature Review",
+            "status": "completed",
+            "pages": 45
+          },
+          {
+            "chapter": 2,
+            "title": "System Architecture and Design",
+            "status": "completed", 
+            "pages": 38
+          },
+          {
+            "chapter": 3,
+            "title": "Methodology and Implementation",
+            "status": "in_progress",
+            "pages": 42,
+            "progress": 75
+          },
+          {
+            "chapter": 4,
+            "title": "Experimental Results and Analysis",
+            "status": "in_progress",
+            "pages": 35,
+            "progress": 45
+          },
+          {
+            "chapter": 5,
+            "title": "Conclusions and Future Work",
+            "status": "planned",
+            "pages": 15,
+            "progress": 0
+          }
+        ]
+      }
+    ],
+    "experiments": [
+      {
+        "id": 1,
+        "name": "Campus Environment 3D Mapping",
+        "description": "Comprehensive 3D point cloud mapping of NITK campus roads and pedestrian areas using LiDAR sensor",
+        "status": "completed",
+        "startDate": "2024-11-01",
+        "completionDate": "2024-11-30",
+        "duration": "30 days",
+        "methodology": "Drive-based LiDAR scanning with GPS coordinate mapping",
+        "results": {
+          "areasCovered": "2.5 km campus roads",
+          "pointCloudSize": "1.2 billion points",
+          "accuracy": "±2cm",
+          "dataSize": "45 GB"
+        },
+        "keyFindings": [
+          "High-fidelity digital twin of campus created",
+          "Sub-centimeter mapping accuracy achieved",
+          "Semantic annotations successfully added",
+          "Real-time processing pipeline validated"
+        ],
+        "publications": [2]
+      },
+      {
+        "id": 2,
+        "name": "Pedestrian Behavior Data Collection",
+        "description": "Systematic collection of pedestrian crossing patterns and behavior data in campus environment",
+        "status": "ongoing",
+        "startDate": "2024-12-01", 
+        "expectedCompletion": "2025-02-28",
+        "duration": "90 days",
+        "methodology": "Multi-sensor data recording during peak campus hours with manual annotation",
+        "currentResults": {
+          "hoursRecorded": 156,
+          "pedestrianInteractions": 1247,
+          "crossingEvents": 892,
+          "dataSize": "2.3 TB"
+        },
+        "progress": 65,
+        "keyFindings": [
+          "Peak crossing times: 9-11 AM, 2-4 PM",
+          "Average crossing speed: 1.2 m/s",
+          "Weather impact on behavior patterns identified",
+          "Group vs individual behavior differences observed"
+        ],
+        "publications": [1]
+      },
+      {
+        "id": 3,
+        "name": "Stochastic Model Training and Validation", 
+        "description": "Development and training of neural network-based stochastic model for pedestrian crossing prediction",
+        "status": "in_progress",
+        "startDate": "2025-01-05",
+        "expectedCompletion": "2025-02-28",
+        "duration": "55 days",
+        "methodology": "Supervised learning with uncertainty quantification using Bayesian neural networks",
+        "currentResults": {
+          "trainingAccuracy": 85.2,
+          "validationAccuracy": 78.5,
+          "modelSize": "45.2 MB",
+          "inferenceTime": "12ms"
+        },
+        "progress": 60,
+        "keyFindings": [
+          "Velocity and head orientation are strongest predictors",
+          "Weather conditions significantly affect crossing patterns",
+          "Uncertainty quantification improves safety margins"
+        ],
+        "publications": [1, 2]
+      },
+      {
+        "id": 4,
+        "name": "Autoware Integration Testing",
+        "description": "Integration of stochastic prediction module with Autoware planning pipeline",
+        "status": "scheduled",
+        "scheduledStart": "2025-02-15",
+        "expectedCompletion": "2025-03-15", 
+        "duration": "30 days",
+        "methodology": "Real-time integration testing with simulation validation",
+        "objectives": [
+          "Seamless integration with Autoware stack",
+          "Real-time performance validation", 
+          "Safety margin optimization",
+          "System reliability testing"
+        ],
+        "publications": [2]
+      },
+      {
+        "id": 5,
+        "name": "Real-World Campus Testing",
+        "description": "Comprehensive testing of complete autonomous system in controlled campus environment",
+        "status": "planned",
+        "scheduledStart": "2025-03-01",
+        "expectedCompletion": "2025-04-30",
+        "duration": "60 days", 
+        "methodology": "Progressive testing from simple to complex scenarios with safety protocols",
+        "testScenarios": [
+          "Straight line navigation",
+          "Simple intersections",
+          "Pedestrian interactions",
+          "Complex multi-pedestrian scenarios",
+          "Weather condition testing"
+        ],
+        "safetyMeasures": [
+          "Safety driver always present",
+          "Emergency stop systems",
+          "Low speed testing (max 10 kmph)",
+          "Controlled environment"
+        ],
+        "publications": [1, 2]
+      }
+    ],
+    "datasets": [
+      {
+        "name": "NITK Campus Point Cloud Dataset",
+        "description": "High-resolution 3D point cloud map of NITK campus",
+        "size": "45 GB",
+        "format": "PCD files",
+        "coverage": "2.5 km campus roads",
+        "accuracy": "±2cm",
+        "created": "2024-11-30",
+        "publicAvailable": false
+      },
+      {
+        "name": "Campus Pedestrian Behavior Dataset",
+        "description": "Multi-modal sensor data of pedestrian crossing behaviors",
+        "size": "2.3 TB", 
+        "format": "ROS2 bag files",
+        "duration": "156 hours",
+        "interactions": 1247,
+        "annotations": "Manual + automatic",
+        "created": "2024-12-01",
+        "status": "ongoing collection",
+        "publicAvailable": false
+      }
+    ],
+    "collaborations": [
+      {
+        "institution": "NITK Surathkal",
+        "department": "Mechanical Engineering",
+        "collaborators": [
+          "Dr. K.V Gangadharan",
+          "Dr. Pruthviraj U"
+        ],
+        "role": "Primary research institution and supervision"
+      },
+      {
+        "institution": "Autoware Foundation", 
+        "type": "Open source community",
+        "contribution": "Framework utilization and potential contributions",
+        "role": "Technology platform provider"
+      }
+    ],
+    "conferences": [
+      {
+        "name": "IEEE ICRA 2025",
+        "location": "Atlanta, USA",
+        "date": "2025-05-19 to 2025-05-23",
+        "submission": "2024-12-01",
+        "status": "under_review",
+        "paperIds": [1]
+      },
+      {
+        "name": "IEEE ARSO 2024",
+        "location": "Virtual",
+        "date": "2024-11-15",
+        "presentation": "completed",
+        "paperIds": [3]
+      }
+    ],
+    "metrics": {
+      "researchHours": 1240,
+      "dataCollectionHours": 156,
+      "experimentationHours": 320,
+      "codingHours": 450,
+      "writingHours": 180,
+      "presentationHours": 25,
+      "testMilesAutonomous": 23.7,
+      "simulationHours": 89,
+      "modelIterations": 47,
+      "publicationsInProgress": 2,
+      "publicationsCompleted": 1,
+      "experimentsCompleted": 2,
+      "experimentsOngoing": 1,
+      "datasetsCreated": 2,
+      "codeRepositories": 3,
+      "collaborators": 7
+    },
+    "futurePlans": [
+      {
+        "item": "Extend research to multi-vehicle scenarios",
+        "timeline": "PhD continuation",
+        "priority": "high"
+      },
+      {
+        "item": "Deploy system on public roads with regulatory approval",
+        "timeline": "2026-2027",
+        "priority": "medium"
+      },
+      {
+        "item": "Commercialize prediction algorithms",
+        "timeline": "Post PhD",
+        "priority": "medium"
+      },
+      {
+        "item": "Open source dataset release",
+        "timeline": "2025 Q3",
+        "priority": "high"
+      }
+    ],
+    "awards": [
+      {
+        "award": "Best Student Paper Award",
+        "venue": "IEEE ARSO 2024 Workshop",
+        "date": "2024-11-15",
+        "description": "For the paper on real-time sensor fusion"
+      }
+    ]
+  }
