@@ -275,30 +275,44 @@ body {
     font-weight: 300;
 }
 
-/* Landing Page Styles */
+/* Landing Page Styles - UPDATED FOR REDUCED SPACING */
 .landing-container {
     max-width: 1400px;
     margin: 0 auto;
 }
 
 .welcome-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem; /* REDUCED: Controls spacing between car icon and text */
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 50px; /* REDUCED: from 80px */
+    padding: 1rem 0; /* REDUCED: Minimal padding */
 }
 
 .welcome-header h1 {
-    font-size: 4rem;
+    font-size: 3.5rem; /* REDUCED: from 4rem */
     font-weight: 100;
     color: #ffffff;
-    margin-bottom: 30px;
+    margin: 0; /* REMOVED: all default margins */
     letter-spacing: 3px;
-    line-height: 1.2;
+    line-height: 1.1; /* REDUCED: tighter line height */
 }
 
 .welcome-header p {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: #888888;
     font-weight: 300;
+    margin: 0; /* REMOVED: all default margins */
+}
+
+/* If you have a car icon element, add minimal spacing */
+.welcome-header .car-icon,
+.welcome-header .icon,
+.welcome-header svg,
+.welcome-header img {
+    margin: 0 0 0.25rem 0; /* MINIMAL spacing below icon */
 }
 
 .overview-grid {
@@ -1182,7 +1196,7 @@ body {
     }
     
     .welcome-header h1 {
-        font-size: 2.5rem;
+        font-size: 2.5rem; /* Further reduced for mobile */
     }
     
     .overview-grid {
@@ -1217,8 +1231,13 @@ body {
     }
     
     .welcome-header h1 {
-        font-size: 2rem;
+        font-size: 2rem; /* Further reduced for small screens */
         letter-spacing: 1px;
+    }
+    
+    .welcome-header {
+        margin-bottom: 40px; /* REDUCED: Smaller margin on mobile */
+        gap: 0.25rem; /* REDUCED: Even tighter spacing on mobile */
     }
     
     .overview-card,
