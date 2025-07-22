@@ -123,13 +123,13 @@ class Vehicle3D {
         this.directionalLights.push(keyLight);
         
         // Fill light
-        const fillLight = new THREE.DirectionalLight(0x00D4FF, 0.3);
+        const fillLight = new THREE.DirectionalLight(0xffffff, 0.3);
         fillLight.position.set(-5, 5, -5);
         this.scene.add(fillLight);
         this.directionalLights.push(fillLight);
         
         // Rim light
-        const rimLight = new THREE.DirectionalLight(0x00FF88, 0.2);
+        const rimLight = new THREE.DirectionalLight(0xffffff, 0.2);
         rimLight.position.set(0, -5, -10);
         this.scene.add(rimLight);
         this.directionalLights.push(rimLight);
@@ -178,68 +178,48 @@ class Vehicle3D {
             this.vehicle = new THREE.Group();
             this.vehicle.name = 'EgoVehicle';
             
-            // Vehicle body (simplified Mahindra Reva i geometry)
-            const bodyGeometry = new THREE.BoxGeometry(3.2, 1.2, 1.6);
-            const bodyMesh = new THREE.Mesh(bodyGeometry, this.materials.vehicle);
-            bodyMesh.position.set(0, 0.6, 0);
-            bodyMesh.castShadow = true;
-            bodyMesh.receiveShadow = true;
-            bodyMesh.name = 'VehicleBody';
-            this.vehicle.add(bodyMesh);
+            // Load GLTF model
+            const loader = new THREE.GLTFLoader();
+            const cacheBuster = '?v=' + Date.now();
             
-            // Windshield
-            const windshieldGeometry = new THREE.PlaneGeometry(1.4, 1.0);
-            const windshieldMaterial = new THREE.MeshPhysicalMaterial({
-                color: 0x87CEEB,
-                transparent: true,
-                opacity: 0.3,
-                metalness: 0,
-                roughness: 0.1
+            const gltf = await new Promise((resolve, reject) => {
+                loader.load(
+                    `assets/models/ego.gltf${cacheBuster}`,
+                    resolve,
+                    (progress) => {
+                        console.log('Loading progress:', (progress.loaded / progress.total * 100) + '%');
+                    },
+                    reject
+                );
             });
-            const windshield = new THREE.Mesh(windshieldGeometry, windshieldMaterial);
-            windshield.position.set(1.3, 1.0, 0);
-            windshield.rotation.x = -0.2;
-            windshield.name = 'Windshield';
-            this.vehicle.add(windshield);
             
-            // Wheels
-            this.createWheels();
+            // Add loaded model to vehicle group
+            const model = gltf.scene;
+            model.name = 'EgoVehicleModel';
+            
+            // Scale and position the model if needed
+            model.scale.set(1, 1, 1);
+            model.position.set(0, 0, 0);
+            
+            // Enable shadows for all meshes in the model
+            model.traverse((child) => {
+                if (child.isMesh) {
+                    child.castShadow = true;
+                    child.receiveShadow = true;
+                }
+            });
+            
+            this.vehicle.add(model);
             
             // Add vehicle to scene
             this.scene.add(this.vehicle);
             
-            console.log('Vehicle model created successfully');
+            console.log('GLTF Vehicle model loaded successfully');
             
         } catch (error) {
-            console.error('Failed to create vehicle:', error);
+            console.error('Failed to load GLTF model:', error);
             this.createFallbackVehicle();
         }
-    }
-
-    createWheels() {
-        const wheelGeometry = new THREE.CylinderGeometry(0.3, 0.3, 0.2, 16);
-        const wheelMaterial = new THREE.MeshPhysicalMaterial({
-            color: 0x333333,
-            metalness: 0.3,
-            roughness: 0.7
-        });
-        
-        const wheelPositions = [
-            [-1.2, 0, -0.8],  // Front left
-            [-1.2, 0, 0.8],   // Front right
-            [1.2, 0, -0.8],   // Rear left
-            [1.2, 0, 0.8]     // Rear right
-        ];
-        
-        wheelPositions.forEach((position, index) => {
-            const wheel = new THREE.Mesh(wheelGeometry, wheelMaterial);
-            wheel.position.set(position[0], position[1], position[2]);
-            wheel.rotation.z = Math.PI / 2;
-            wheel.castShadow = true;
-            wheel.receiveShadow = true;
-            wheel.name = `Wheel${index + 1}`;
-            this.vehicle.add(wheel);
-        });
     }
 
     createSensors() {
@@ -339,7 +319,7 @@ class Vehicle3D {
         this.scene.add(ground);
         
         // Grid helper
-        const gridHelper = new THREE.GridHelper(20, 40, 0x00D4FF, 0x333333);
+        const gridHelper = new THREE.GridHelper(20, 40, 0x444444, 0x222222);
         gridHelper.position.y = -0.49;
         gridHelper.material.transparent = true;
         gridHelper.material.opacity = 0.3;
@@ -354,7 +334,7 @@ class Vehicle3D {
     createFallbackVehicle() {
         // Simple fallback vehicle if main creation fails
         const geometry = new THREE.BoxGeometry(3, 1, 1.5);
-        const material = new THREE.MeshBasicMaterial({ color: 0x00D4FF });
+        const material = new THREE.MeshBasicMaterial({ color: 0x444444 });
         this.vehicle = new THREE.Mesh(geometry, material);
         this.vehicle.position.y = 0.5;
         this.vehicle.name = 'FallbackVehicle';
@@ -547,11 +527,9 @@ class Vehicle3D {
                     if (this.isWireframe) {
                         child.material = this.materials.wireframe;
                     } else {
-                        // Restore original materials
+                        // Restore original materials (this may need adjustment for GLTF materials)
                         if (child.name.includes('Sensor') || child.name.includes('LiDAR') || child.name.includes('Camera') || child.name.includes('IMU')) {
                             child.material = this.materials.sensor;
-                        } else {
-                            child.material = this.materials.vehicle;
                         }
                     }
                 }
@@ -596,10 +574,9 @@ class Vehicle3D {
         if (this.container) {
             this.container.innerHTML = `
                 <div style="display: flex; justify-content: center; align-items: center; height: 100%; flex-direction: column; color: #888;">
-                    <div style="font-size: 4rem; margin-bottom: 20px;">🚗</div>
                     <div style="font-size: 1.2rem; margin-bottom: 10px;">3D Vehicle Viewer</div>
                     <div style="font-size: 0.9rem; color: #666;">Mahindra Reva i EGO Vehicle</div>
-                    <div style="font-size: 0.8rem; margin-top: 15px; color: #555;">WebGL not supported or failed to load</div>
+                    <div style="font-size: 0.8rem; margin-top: 15px; color: #555;">Model failed to load</div>
                 </div>
             `;
         }

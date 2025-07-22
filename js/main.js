@@ -672,11 +672,10 @@ class MainController {
     scrollToSpecSection(category) {
         const sectionId = `${category}-section`;
         const section = document.getElementById(sectionId);
-        const specsContent = document.getElementById('specsContent');
         
-        if (section && specsContent) {
-            const offsetTop = section.offsetTop - specsContent.offsetTop;
-            specsContent.scrollTo({
+        if (section) {
+            const offsetTop = section.getBoundingClientRect().top + window.pageYOffset - 150;
+            window.scrollTo({
                 top: offsetTop,
                 behavior: 'smooth'
             });

@@ -230,12 +230,26 @@ body {
     margin-bottom: 50px;
 }
 
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.login-header .nitk-logo {
+    height: 50px;
+    width: auto;
+    filter: brightness(0) invert(1);
+}
+
 .login-header h1 {
     font-size: 2.5rem;
     font-weight: 700;
     color: #ffffff;
-    margin-bottom: 10px;
     letter-spacing: 3px;
+    margin: 0;
 }
 
 .login-header h2 {

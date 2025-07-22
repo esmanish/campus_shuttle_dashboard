@@ -31,7 +31,19 @@ body {
     z-index: 1000;
 }
 
-.header-left .logo h1 {
+.header-left .logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nitk-logo {
+    height: 40px;
+    width: auto;
+    filter: brightness(0) invert(1);
+}
+
+.logo-text h1 {
     font-size: 1.8rem;
     font-weight: 700;
     color: #ffffff;
@@ -39,7 +51,7 @@ body {
     margin-bottom: -5px;
 }
 
-.header-left .logo span {
+.logo-text span {
     font-size: 0.85rem;
     color: #888888;
     font-weight: 300;
@@ -805,9 +817,6 @@ body {
 
 .specs-content {
     padding: 0;
-    max-height: 500px;
-    overflow-y: auto;
-    scroll-behavior: smooth;
 }
 
 .specs-long-table {
@@ -817,51 +826,65 @@ body {
 
 .spec-section {
     padding: 40px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    max-width: 800px;
+    margin: 0 auto 40px auto;
 }
 
 .spec-section:last-child {
-    border-bottom: none;
+    margin-bottom: 0;
 }
 
 .spec-section h4 {
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 300;
     color: #ffffff;
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 30px;
     padding-bottom: 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
 }
 
 .specs-table {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 15px;
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .spec-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: table-row;
 }
 
 .spec-label {
-    font-size: 0.8rem;
+    display: table-cell;
+    font-size: 1rem;
     color: #888888;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 300;
+    padding: 20px 30px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    width: 50%;
+    vertical-align: middle;
 }
 
 .spec-value {
-    font-size: 0.8rem;
+    display: table-cell;
+    font-size: 1rem;
     color: #ffffff;
     font-weight: 300;
-    text-align: right;
+    padding: 20px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    width: 50%;
+    vertical-align: middle;
+}
+
+.spec-row:last-child .spec-label,
+.spec-row:last-child .spec-value {
+    border-bottom: none;
 }
 
 /* Responsive Design for EGO Vehicle */
