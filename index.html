@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NITK EGO Vehicle Tracker - Dashboard</title>
+    <title>NITK Autonomous Systems Lab</title>
     <link rel="stylesheet" href="css/main.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
-    <!-- Header -->
-    <header class="main-header">
+    <!-- Top Header -->
+    <header class="top-header">
         <div class="header-left">
-            <h1>NITK EGO Vehicle Tracker</h1>
-            <span class="project-status">System Online</span>
+            <div class="logo">
+                <h1>NITK</h1>
+                <span>Autonomous Systems Lab</span>
+            </div>
+        </div>
+        <div class="header-center">
+            <div class="project-title">EGO Vehicle Development Platform</div>
         </div>
         <div class="header-right">
             <div class="user-info">
@@ -23,242 +28,172 @@
         </div>
     </header>
 
-    <!-- Navigation Sidebar -->
-    <nav class="sidebar">
-        <div class="nav-items">
-            <div class="nav-item active" data-section="dashboard">
-                <div class="nav-icon">🏠</div>
-                <span>Dashboard</span>
+    <!-- Main Navigation Bar -->
+    <nav class="main-navbar">
+        <div class="nav-container">
+            <div class="main-nav-items" id="mainNavItems">
+                <!-- Navigation items populated based on user role -->
             </div>
-            <div class="nav-item" data-section="technical">
-                <div class="nav-icon">⚙️</div>
-                <span>Technical</span>
-            </div>
-            <div class="nav-item" data-section="team">
-                <div class="nav-icon">👥</div>
-                <span>Team</span>
-            </div>
-            <div class="nav-item" data-section="timeline">
-                <div class="nav-icon">📊</div>
-                <span>Timeline</span>
-            </div>
-            <div class="nav-item" data-section="gallery">
-                <div class="nav-icon">🖼️</div>
-                <span>Gallery</span>
-            </div>
-            <div class="nav-item" data-section="research">
-                <div class="nav-icon">🔬</div>
-                <span>Research</span>
-            </div>
-            <div class="nav-item" data-section="financial">
-                <div class="nav-icon">💰</div>
-                <span>Financial</span>
+            <div class="nav-status">
+                <span class="status-dot"></span>
+                <span>System Online</span>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content Area -->
-    <main class="main-content">
-        
-        <!-- Dashboard Section (Default) -->
-        <section id="dashboard" class="content-section active">
-            <div class="section-header">
-                <h2>EGO Vehicle Overview</h2>
-                <div class="status-indicators">
-                    <div class="status-item">
-                        <span class="status-dot green"></span>
-                        <span>Sensors: Online</span>
-                    </div>
-                    <div class="status-item">
-                        <span class="status-dot blue"></span>
-                        <span>Processing: Active</span>
-                    </div>
-                    <div class="status-item">
-                        <span class="status-dot orange"></span>
-                        <span>Testing: In Progress</span>
-                    </div>
-                </div>
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Left Sidebar -->
+        <aside class="submenu-sidebar" id="submenuSidebar">
+            <div class="submenu-header">
+                <h3 id="submenuTitle">Menu</h3>
             </div>
+            <div class="submenu-items" id="submenuItems">
+                <!-- Submenu items populated dynamically -->
+            </div>
+        </aside>
 
-            <div class="dashboard-grid">
-                <!-- 3D Vehicle Viewer -->
-                <div class="vehicle-viewer-container">
-                    <h3>Mahindra Reva i - EGO Vehicle</h3>
-                    <div id="vehicle3d" class="vehicle-3d"></div>
-                    <div class="viewer-controls">
-                        <button id="resetView">Reset View</button>
-                        <button id="toggleWireframe">Wireframe</button>
-                        <button id="showComponents">Components</button>
+        <!-- Main Content Area -->
+        <main class="content-area">
+            <!-- Landing Page -->
+            <section id="landing" class="content-section active">
+                <div class="landing-container">
+                    <div class="welcome-header">
+                        <h1>Welcome to NITK Autonomous Systems Lab</h1>
+                        <p>Advanced Research in Autonomous Vehicle Technology</p>
                     </div>
-                </div>
-
-                <!-- Quick Stats -->
-                <div class="stats-panel">
-                    <h3>Project Stats</h3>
-                    <div class="stat-item">
-                        <span class="stat-label">Development Phase</span>
-                        <span class="stat-value">Integration & Testing</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Progress</span>
-                        <div class="progress-bar">
-                            <div class="progress-fill" data-progress="75"></div>
+                    
+                    <div class="overview-grid">
+                        <div class="overview-card">
+                            <div class="card-icon">🚗</div>
+                            <h3>EGO Vehicle Platform</h3>
+                            <p>Mahindra Reva i based autonomous vehicle with advanced sensor suite</p>
+                            <div class="card-stats">
+                                <span>15+ Sensors</span>
+                                <span>NVIDIA AGX Orin</span>
+                            </div>
                         </div>
-                        <span class="stat-value">75%</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Active Components</span>
-                        <span class="stat-value">12/15</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Team Members</span>
-                        <span class="stat-value">8 Engineers</span>
-                    </div>
-                </div>
-
-                <!-- Recent Activities -->
-                <div class="activity-panel">
-                    <h3>Recent Activities</h3>
-                    <div class="activity-list">
-                        <div class="activity-item">
-                            <div class="activity-time">2 hours ago</div>
-                            <div class="activity-desc">LiDAR calibration completed</div>
+                        
+                        <div class="overview-card">
+                            <div class="card-icon">🧠</div>
+                            <h3>Research Focus</h3>
+                            <p>Stochastic pedestrian behavior modeling for unstructured environments</p>
+                            <div class="card-stats">
+                                <span>ML/AI Driven</span>
+                                <span>Real-world Testing</span>
+                            </div>
                         </div>
-                        <div class="activity-item">
-                            <div class="activity-time">5 hours ago</div>
-                            <div class="activity-desc">Stochastic model training updated</div>
+                        
+                        <div class="overview-card">
+                            <div class="card-icon">📊</div>
+                            <h3>Project Progress</h3>
+                            <p>System integration and testing phase with 75% completion</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%"></div>
+                            </div>
                         </div>
-                        <div class="activity-item">
-                            <div class="activity-time">1 day ago</div>
-                            <div class="activity-desc">Campus mapping data collected</div>
-                        </div>
-                        <div class="activity-item">
-                            <div class="activity-time">2 days ago</div>
-                            <div class="activity-desc">NVIDIA AGX Orin integration tested</div>
+                        
+                        <div class="overview-card">
+                            <div class="card-icon">👥</div>
+                            <h3>Team Collaboration</h3>
+                            <p>Multi-disciplinary team working on cutting-edge autonomous systems</p>
+                            <div class="card-stats">
+                                <span>8 Team Members</span>
+                                <span>4 Departments</span>
+                            </div>
                         </div>
                     </div>
+
+                    <div class="recent-updates">
+                        <h2>Recent Updates</h2>
+                        <div class="updates-list">
+                            <div class="update-item">
+                                <div class="update-time">2 hours ago</div>
+                                <div class="update-content">
+                                    <strong>Sensor Calibration Complete</strong>
+                                    <p>LiDAR and camera array calibration finished successfully</p>
+                                </div>
+                            </div>
+                            <div class="update-item">
+                                <div class="update-time">1 day ago</div>
+                                <div class="update-content">
+                                    <strong>Stochastic Model Update</strong>
+                                    <p>Pedestrian prediction accuracy improved to 78.5%</p>
+                                </div>
+                            </div>
+                            <div class="update-item">
+                                <div class="update-time">3 days ago</div>
+                                <div class="update-content">
+                                    <strong>Campus Mapping Complete</strong>
+                                    <p>3D point cloud map of NITK campus generated</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Technical Section -->
-        <section id="technical" class="content-section">
-            <div class="section-header">
-                <h2>Technical Systems</h2>
-                <button class="section-action">System Health Check</button>
-            </div>
-            <div class="technical-grid">
-                <div class="component-card">
-                    <h4>Perception System</h4>
-                    <div class="component-status online">Online</div>
-                    <ul>
-                        <li>RoboSense RS-LiDAR-16</li>
-                        <li>IMX490 Cameras (4x)</li>
-                        <li>MTi-680G IMU/GNSS</li>
-                    </ul>
+            <!-- Research Section -->
+            <section id="research" class="content-section">
+                <div class="section-header">
+                    <h1>Research Portfolio</h1>
+                    <p>Ongoing research initiatives in autonomous vehicle technology</p>
                 </div>
-                <div class="component-card">
-                    <h4>Processing Unit</h4>
-                    <div class="component-status online">Active</div>
-                    <ul>
-                        <li>NVIDIA AGX Orin</li>
-                        <li>Autoware Framework</li>
-                        <li>ROS2 Integration</li>
-                    </ul>
+                <div id="researchContent" class="content-grid">
+                    <!-- Research content loaded here -->
                 </div>
-                <div class="component-card">
-                    <h4>Stochastic Model</h4>
-                    <div class="component-status testing">Testing</div>
-                    <ul>
-                        <li>Pedestrian Prediction</li>
-                        <li>Uncertainty Modeling</li>
-                        <li>Campus Environment</li>
-                    </ul>
+            </section>
+
+            <!-- EGO Vehicle Section -->
+            <section id="ego-vehicle" class="content-section">
+                <div class="section-header">
+                    <h1>EGO Vehicle Platform</h1>
+                    <p>Comprehensive overview of our autonomous vehicle system</p>
                 </div>
-                <div class="component-card">
-                    <h4>Vehicle Platform</h4>
-                    <div class="component-status online">Ready</div>
-                    <ul>
-                        <li>Mahindra Reva i</li>
-                        <li>15KW PMSM Motor</li>
-                        <li>72V Controller Kit</li>
-                    </ul>
+                <div id="egoVehicleContent" class="content-grid">
+                    <!-- EGO vehicle content loaded here -->
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Team Section -->
-        <section id="team" class="content-section">
-            <div class="section-header">
-                <h2>Team Management</h2>
-                <button class="section-action">Add Member</button>
-            </div>
-            <div id="teamContent" class="team-grid">
-                <!-- Team data will be loaded here -->
-                <div class="loading">Loading team data...</div>
-            </div>
-        </section>
+            <!-- Learn Section -->
+            <section id="learn" class="content-section">
+                <div class="section-header">
+                    <h1>Learning Resources</h1>
+                    <p>Documentation, tutorials, and educational materials</p>
+                </div>
+                <div id="learnContent" class="content-grid">
+                    <!-- Learning content loaded here -->
+                </div>
+            </section>
 
-        <!-- Timeline Section -->
-        <section id="timeline" class="content-section">
-            <div class="section-header">
-                <h2>Project Timeline</h2>
-                <button class="section-action">Add Event</button>
-            </div>
-            <div id="timelineContent" class="timeline-container">
-                <!-- Timeline data will be loaded here -->
-                <div class="loading">Loading timeline...</div>
-            </div>
-        </section>
+            <!-- Administration Section -->
+            <section id="administration" class="content-section">
+                <div class="section-header">
+                    <h1>Administration</h1>
+                    <p>Project management and administrative tools</p>
+                </div>
+                <div id="administrationContent" class="content-grid">
+                    <!-- Administration content loaded here -->
+                </div>
+            </section>
 
-        <!-- Gallery Section -->
-        <section id="gallery" class="content-section">
-            <div class="section-header">
-                <h2>Project Gallery</h2>
-                <button class="section-action">Upload Media</button>
-            </div>
-            <div class="gallery-filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="photos">Photos</button>
-                <button class="filter-btn" data-filter="videos">Videos</button>
-                <button class="filter-btn" data-filter="renders">3D Renders</button>
-            </div>
-            <div id="galleryContent" class="gallery-grid">
-                <!-- Gallery content will be loaded here -->
-                <div class="loading">Loading gallery...</div>
-            </div>
-        </section>
-
-        <!-- Research Section -->
-        <section id="research" class="content-section">
-            <div class="section-header">
-                <h2>Research Progress</h2>
-                <button class="section-action">New Research</button>
-            </div>
-            <div id="researchContent" class="research-container">
-                <!-- Research data will be loaded here -->
-                <div class="loading">Loading research data...</div>
-            </div>
-        </section>
-
-        <!-- Financial Section -->
-        <section id="financial" class="content-section">
-            <div class="section-header">
-                <h2>Financial Overview</h2>
-                <button class="section-action">Add Expense</button>
-            </div>
-            <div id="financialContent" class="financial-grid">
-                <!-- Financial data will be loaded here -->
-                <div class="loading">Loading financial data...</div>
-            </div>
-        </section>
-
-    </main>
+            <!-- Thesis Section -->
+            <section id="thesis" class="content-section">
+                <div class="section-header">
+                    <h1>Thesis Documentation</h1>
+                    <p>M.Tech thesis development and documentation</p>
+                </div>
+                <div id="thesisContent" class="content-grid">
+                    <!-- Thesis content loaded here -->
+                </div>
+            </section>
+        </main>
+    </div>
 
     <!-- Loading Overlay -->
-    <div id="loadingOverlay" class="loading-overlay">
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
         <div class="loading-spinner"></div>
-        <div class="loading-text">Initializing System...</div>
+        <div class="loading-text">Loading...</div>
     </div>
 
     <!-- Scripts -->

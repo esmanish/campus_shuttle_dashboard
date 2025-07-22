@@ -29,7 +29,7 @@
             <div class="login-header">
                 <h1>NITK</h1>
                 <h2>Autonomous Systems Lab</h2>
-                <p>EGO Vehicle Development Tracker</p>
+                <p>EGO Vehicle Development Platform</p>
             </div>
 
             <!-- Login Form -->
@@ -49,14 +49,20 @@
                 <div class="role-selector">
                     <label>Login as:</label>
                     <div class="role-options">
+                        <input type="radio" id="project_lead" name="role" value="project_lead">
+                        <label for="project_lead">Project Lead</label>
+                        
+                        <input type="radio" id="admin" name="role" value="admin">
+                        <label for="admin">Admin</label>
+                        
                         <input type="radio" id="engineer" name="role" value="engineer" checked>
                         <label for="engineer">Engineer</label>
                         
-                        <input type="radio" id="professor" name="role" value="professor">
-                        <label for="professor">Professor</label>
+                        <input type="radio" id="intern" name="role" value="intern">
+                        <label for="intern">Intern</label>
                         
-                        <input type="radio" id="lead" name="role" value="lead">
-                        <label for="lead">Project Lead</label>
+                        <input type="radio" id="volunteer" name="role" value="volunteer">
+                        <label for="volunteer">Volunteer</label>
                     </div>
                 </div>
 

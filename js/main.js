@@ -1,8 +1,8 @@
-// Main Dashboard Controller for NITK EGO Vehicle Tracker
-class DashboardController {
+// Simplified Main Controller for NITK EGO Vehicle Platform
+class MainController {
     constructor() {
-        this.currentSection = 'dashboard';
-        this.userPermissions = {};
+        this.currentUser = null;
+        this.currentMenu = 'landing';
         this.dataManager = null;
         this.vehicle3D = null;
         
@@ -10,186 +10,101 @@ class DashboardController {
     }
 
     async init() {
-        // Check authentication first
         if (!auth.requireAuth()) {
             return;
         }
 
-        // Show loading overlay
-        this.showLoading('Initializing System...');
+        this.showLoading('Initializing Platform...');
 
         try {
-            // Initialize components
-            await this.initializeComponents();
-            
-            // Setup event listeners
+            this.currentUser = auth.getCurrentUser();
+            this.loadUserInterface();
+            this.setupNavigation();
             this.setupEventListeners();
             
-            // Load user interface
-            this.loadUserInterface();
+            if (typeof DataManager !== 'undefined') {
+                this.dataManager = new DataManager();
+            }
             
-            // Load initial data
-            await this.loadInitialData();
-            
-            // Initialize 3D viewer
-            this.init3DViewer();
-            
-            // Hide loading overlay
-            setTimeout(() => this.hideLoading(), 1500);
+            setTimeout(() => this.hideLoading(), 1000);
             
         } catch (error) {
-            console.error('Dashboard initialization failed:', error);
-            this.showError('Failed to initialize dashboard');
+            console.error('Platform initialization failed:', error);
+            this.showError('Failed to initialize platform');
         }
     }
 
-    async initializeComponents() {
-        // Initialize data manager
-        if (typeof DataManager !== 'undefined') {
-            this.dataManager = new DataManager();
-        }
-        
-        // Initialize 3D viewer
-        if (typeof Vehicle3D !== 'undefined') {
-            this.vehicle3D = new Vehicle3D('vehicle3d');
-        }
+    loadUserInterface() {
+        if (!this.currentUser) return;
 
-        // Get user permissions
-        const user = auth.getCurrentUser();
-        this.userPermissions = this.getUserPermissions(user.role);
+        const userName = document.getElementById('userName');
+        const userRole = document.getElementById('userRole');
+        
+        if (userName) userName.textContent = this.currentUser.name;
+        if (userRole) userRole.textContent = this.currentUser.role.replace('_', ' ').toUpperCase();
     }
 
-    setupEventListeners() {
-        // Navigation events
-        this.setupNavigationEvents();
+    setupNavigation() {
+        const mainNavItems = document.getElementById('mainNavItems');
+        const allowedMenus = auth.getRoleMenus(this.currentUser.role);
         
-        // Header events
-        this.setupHeaderEvents();
+        mainNavItems.innerHTML = '';
         
-        // Section events
-        this.setupSectionEvents();
+        // Add Home button
+        const homeItem = document.createElement('div');
+        homeItem.className = 'main-nav-item active';
+        homeItem.setAttribute('data-menu', 'landing');
+        homeItem.innerHTML = '🏠 Home';
+        mainNavItems.appendChild(homeItem);
         
-        // Global events
-        this.setupGlobalEvents();
-    }
-
-    setupNavigationEvents() {
-        const navItems = document.querySelectorAll('.nav-item');
-        navItems.forEach(item => {
-            item.addEventListener('click', (e) => {
-                const section = item.getAttribute('data-section');
-                this.switchSection(section);
-            });
+        // Add allowed menu items
+        const menuConfigs = {
+            'RESEARCH': { id: 'research', icon: '🔬' },
+            'EGO-VEHICLE': { id: 'ego-vehicle', icon: '🚗' },
+            'LEARN': { id: 'learn', icon: '📚' },
+            'ADMINISTRATION': { id: 'administration', icon: '⚙️' },
+            'THESIS': { id: 'thesis', icon: '📄' }
+        };
+        
+        allowedMenus.forEach(menuName => {
+            const config = menuConfigs[menuName];
+            if (config) {
+                const navItem = document.createElement('div');
+                navItem.className = 'main-nav-item';
+                navItem.setAttribute('data-menu', config.id);
+                navItem.innerHTML = `${config.icon} ${menuName}`;
+                mainNavItems.appendChild(navItem);
+            }
         });
     }
 
-    setupHeaderEvents() {
+    setupEventListeners() {
+        // Main navigation
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.main-nav-item')) {
+                const menuItem = e.target.closest('.main-nav-item');
+                const menuId = menuItem.getAttribute('data-menu');
+                this.switchMenu(menuId);
+            }
+            
+            if (e.target.closest('.submenu-item')) {
+                const submenuItem = e.target.closest('.submenu-item');
+                const submenuName = submenuItem.getAttribute('data-submenu');
+                this.loadSubmenuContent(this.currentMenu, submenuName);
+            }
+        });
+
         // Logout button
         const logoutBtn = document.getElementById('logoutBtn');
         if (logoutBtn) {
             logoutBtn.addEventListener('click', () => {
-                this.handleLogout();
-            });
-        }
-
-        // Mobile menu toggle (for responsive)
-        const menuToggle = document.getElementById('menuToggle');
-        if (menuToggle) {
-            menuToggle.addEventListener('click', () => {
-                this.toggleMobileMenu();
-            });
-        }
-    }
-
-    setupSectionEvents() {
-        // Dashboard events
-        this.setupDashboardEvents();
-        
-        // Technical section events
-        this.setupTechnicalEvents();
-        
-        // Gallery events
-        this.setupGalleryEvents();
-    }
-
-    setupDashboardEvents() {
-        // 3D viewer controls
-        const resetViewBtn = document.getElementById('resetView');
-        const wireframeBtn = document.getElementById('toggleWireframe');
-        const componentsBtn = document.getElementById('showComponents');
-
-        if (resetViewBtn) {
-            resetViewBtn.addEventListener('click', () => {
-                if (this.vehicle3D) {
-                    this.vehicle3D.resetView();
+                if (confirm('Are you sure you want to logout?')) {
+                    auth.logout();
                 }
             });
         }
 
-        if (wireframeBtn) {
-            wireframeBtn.addEventListener('click', () => {
-                if (this.vehicle3D) {
-                    this.vehicle3D.toggleWireframe();
-                }
-            });
-        }
-
-        if (componentsBtn) {
-            componentsBtn.addEventListener('click', () => {
-                if (this.vehicle3D) {
-                    this.vehicle3D.highlightComponents();
-                }
-            });
-        }
-    }
-
-    setupTechnicalEvents() {
-        // Component cards interaction
-        document.addEventListener('click', (e) => {
-            if (e.target.closest('.component-card')) {
-                const card = e.target.closest('.component-card');
-                this.showComponentDetails(card);
-            }
-        });
-    }
-
-    setupGalleryEvents() {
-        // Gallery filters
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const filter = btn.getAttribute('data-filter');
-                this.filterGallery(filter);
-                
-                // Update active filter
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-            });
-        });
-    }
-
-    setupGlobalEvents() {
-        // Keyboard shortcuts
-        document.addEventListener('keydown', (e) => {
-            if (e.ctrlKey || e.metaKey) {
-                switch(e.key) {
-                    case '1':
-                        e.preventDefault();
-                        this.switchSection('dashboard');
-                        break;
-                    case '2':
-                        e.preventDefault();
-                        this.switchSection('technical');
-                        break;
-                    case '3':
-                        e.preventDefault();
-                        this.switchSection('team');
-                        break;
-                }
-            }
-        });
-
-        // Window resize handler
+        // Window resize for 3D viewer
         window.addEventListener('resize', () => {
             if (this.vehicle3D) {
                 this.vehicle3D.onWindowResize();
@@ -197,339 +112,248 @@ class DashboardController {
         });
     }
 
-    loadUserInterface() {
-        const user = auth.getCurrentUser();
-        if (!user) return;
-
-        // Update header
-        document.getElementById('userName').textContent = user.name;
-        document.getElementById('userRole').textContent = user.role.toUpperCase();
-
-        // Filter navigation based on permissions
-        this.filterNavigationByRole(user.role);
-    }
-
-    filterNavigationByRole(role) {
-        const navItems = document.querySelectorAll('.nav-item');
-        
-        const rolePermissions = {
-            engineer: ['dashboard', 'technical', 'timeline', 'gallery'],
-            professor: ['dashboard', 'technical', 'team', 'timeline', 'research', 'financial'],
-            lead: ['dashboard', 'technical', 'team', 'timeline', 'gallery', 'research', 'financial']
-        };
-
-        const allowedSections = rolePermissions[role] || [];
-
-        navItems.forEach(item => {
-            const section = item.getAttribute('data-section');
-            if (!allowedSections.includes(section)) {
-                item.style.display = 'none';
-            }
-        });
-    }
-
-    async loadInitialData() {
-        try {
-            if (this.dataManager) {
-                // Load all required data
-                await Promise.all([
-                    this.dataManager.loadTeamData(),
-                    this.dataManager.loadTimelineData(),
-                    this.dataManager.loadComponentsData(),
-                    this.dataManager.loadResearchData(),
-                    this.dataManager.loadFinancialData()
-                ]);
-
-                // Update UI with loaded data
-                this.updateDashboardStats();
-                this.updateRecentActivities();
-            }
-        } catch (error) {
-            console.error('Failed to load initial data:', error);
-        }
-    }
-
-    init3DViewer() {
-        try {
-            if (this.vehicle3D) {
-                this.vehicle3D.init();
-            } else {
-                // Fallback for missing 3D viewer
-                const viewer = document.getElementById('vehicle3d');
-                if (viewer) {
-                    viewer.innerHTML = `
-                        <div style="display: flex; justify-content: center; align-items: center; height: 100%; flex-direction: column; color: #888;">
-                            <div style="font-size: 4rem; margin-bottom: 20px;">🚗</div>
-                            <div>3D Vehicle Viewer</div>
-                            <div style="font-size: 0.8rem; margin-top: 10px;">Loading vehicle model...</div>
-                        </div>
-                    `;
-                }
-            }
-        } catch (error) {
-            console.error('3D viewer initialization failed:', error);
-        }
-    }
-
-    switchSection(sectionName) {
-        // Update navigation
-        document.querySelectorAll('.nav-item').forEach(item => {
+    switchMenu(menuId) {
+        // Update active nav item
+        document.querySelectorAll('.main-nav-item').forEach(item => {
             item.classList.remove('active');
         });
         
-        document.querySelector(`[data-section="${sectionName}"]`).classList.add('active');
+        const activeItem = document.querySelector(`[data-menu="${menuId}"]`);
+        if (activeItem) {
+            activeItem.classList.add('active');
+        }
 
-        // Update content
+        // Show content section
         document.querySelectorAll('.content-section').forEach(section => {
             section.classList.remove('active');
         });
-
-        const targetSection = document.getElementById(sectionName);
+        
+        const targetSection = document.getElementById(menuId);
         if (targetSection) {
             targetSection.classList.add('active');
-            this.currentSection = sectionName;
-            
-            // Load section data if needed
-            this.loadSectionData(sectionName);
         }
+        
+        this.currentMenu = menuId;
+        
+        // Update submenu
+        if (menuId === 'landing') {
+            this.hideSubmenu();
+        } else {
+            this.updateSubmenu(menuId);
+        }
+        
+        // Load content based on menu
+        this.loadMenuContent(menuId);
     }
 
-    async loadSectionData(sectionName) {
-        const contentElement = document.querySelector(`#${sectionName}Content`);
-        if (!contentElement) return;
+    updateSubmenu(menuId) {
+        const submenuTitle = document.getElementById('submenuTitle');
+        const submenuItems = document.getElementById('submenuItems');
+        const submenuSidebar = document.getElementById('submenuSidebar');
+        
+        const submenus = this.getSubmenus(menuId, this.currentUser.role);
+        
+        if (submenus.length === 0) {
+            this.hideSubmenu();
+            return;
+        }
+        
+        const menuNames = {
+            'research': 'RESEARCH',
+            'ego-vehicle': 'EGO-VEHICLE',
+            'learn': 'LEARN',
+            'administration': 'ADMINISTRATION',
+            'thesis': 'THESIS'
+        };
+        
+        submenuTitle.textContent = menuNames[menuId] || 'Menu';
+        
+        submenuItems.innerHTML = '';
+        submenus.forEach(submenu => {
+            const submenuItem = document.createElement('div');
+            submenuItem.className = 'submenu-item';
+            submenuItem.setAttribute('data-submenu', submenu);
+            submenuItem.innerHTML = `<span>▸</span> ${submenu}`;
+            submenuItems.appendChild(submenuItem);
+        });
+        
+        submenuSidebar.style.display = 'block';
+    }
 
-        switch (sectionName) {
-            case 'team':
-                await this.loadTeamSection();
-                break;
-            case 'timeline':
-                await this.loadTimelineSection();
-                break;
-            case 'gallery':
-                await this.loadGallerySection();
-                break;
+    hideSubmenu() {
+        const submenuSidebar = document.getElementById('submenuSidebar');
+        submenuSidebar.style.display = 'none';
+    }
+
+    getSubmenus(menuId, role) {
+        const submenus = {
+            'research': {
+                project_lead: ['Simulation', 'Stochastic Modeling', 'Pedestrian Study', 'Publications', 'Data Analysis'],
+                admin: ['Simulation', 'Stochastic Modeling', 'Pedestrian Study', 'Publications'],
+                engineer: ['Simulation', 'Stochastic Modeling', 'Pedestrian Study'],
+                intern: [],
+                volunteer: []
+            },
+            'ego-vehicle': {
+                project_lead: ['Vehicle Overview', 'Technical Systems', 'Sensors', 'Control Systems', 'Performance', '3D Viewer'],
+                admin: ['Vehicle Overview', 'Technical Systems', 'Sensors', 'Control Systems', 'Performance', '3D Viewer'],
+                engineer: ['Vehicle Overview', 'Technical Systems', 'Sensors', 'Control Systems', '3D Viewer'],
+                intern: ['Vehicle Overview', 'Technical Systems', '3D Viewer'],
+                volunteer: ['Vehicle Overview', '3D Viewer']
+            },
+            'learn': {
+                project_lead: ['Documentation', 'Tutorials', 'Best Practices', 'Code Repository', 'Resources'],
+                admin: ['Documentation', 'Tutorials', 'Best Practices', 'Code Repository', 'Resources'],
+                engineer: ['Documentation', 'Tutorials', 'Best Practices', 'Code Repository'],
+                intern: ['Documentation', 'Tutorials', 'Code Repository'],
+                volunteer: ['Documentation', 'Tutorials']
+            },
+            'administration': {
+                project_lead: ['Bills', 'BOM', 'Expense Sheet', 'Official Letters', 'Team Management'],
+                admin: ['Bills', 'BOM', 'Expense Sheet', 'Official Letters', 'Team Management'],
+                engineer: [],
+                intern: [],
+                volunteer: []
+            },
+            'thesis': {
+                project_lead: ['Proposal', 'Official Documents', 'Draft Chapters', 'Research Progress', 'Defense'],
+                admin: [],
+                engineer: [],
+                intern: [],
+                volunteer: []
+            }
+        };
+        
+        return submenus[menuId]?.[role] || [];
+    }
+
+    loadMenuContent(menuId) {
+        switch (menuId) {
             case 'research':
-                await this.loadResearchSection();
+                this.loadResearchContent();
                 break;
-            case 'financial':
-                await this.loadFinancialSection();
+            case 'ego-vehicle':
+                this.loadEgoVehicleContent();
+                break;
+            case 'learn':
+                this.loadLearnContent();
+                break;
+            case 'administration':
+                this.loadAdministrationContent();
+                break;
+            case 'thesis':
+                this.loadThesisContent();
                 break;
         }
     }
 
-    async loadTeamSection() {
-        const teamContent = document.getElementById('teamContent');
-        if (!teamContent || !this.dataManager) return;
-
-        try {
-            const teamData = this.dataManager.getTeamData();
-            if (teamData && teamData.length > 0) {
-                teamContent.innerHTML = this.generateTeamHTML(teamData);
-            } else {
-                teamContent.innerHTML = '<div class="loading">No team data available</div>';
-            }
-        } catch (error) {
-            teamContent.innerHTML = '<div class="loading">Failed to load team data</div>';
-        }
-    }
-
-    async loadTimelineSection() {
-        const timelineContent = document.getElementById('timelineContent');
-        if (!timelineContent || !this.dataManager) return;
-
-        try {
-            const timelineData = this.dataManager.getTimelineData();
-            if (timelineData && timelineData.length > 0) {
-                timelineContent.innerHTML = this.generateTimelineHTML(timelineData);
-            } else {
-                timelineContent.innerHTML = '<div class="loading">No timeline data available</div>';
-            }
-        } catch (error) {
-            timelineContent.innerHTML = '<div class="loading">Failed to load timeline data</div>';
-        }
-    }
-
-    async loadGallerySection() {
-        const galleryContent = document.getElementById('galleryContent');
-        if (!galleryContent) return;
-
-        // Placeholder gallery content
-        galleryContent.innerHTML = `
-            <div class="gallery-item">
-                <div class="placeholder-image">📷</div>
-                <div class="gallery-title">Vehicle Assembly</div>
-            </div>
-            <div class="gallery-item">
-                <div class="placeholder-image">🎥</div>
-                <div class="gallery-title">Sensor Testing</div>
-            </div>
-            <div class="gallery-item">
-                <div class="placeholder-image">📊</div>
-                <div class="gallery-title">3D CAD Model</div>
-            </div>
-        `;
-    }
-
-    async loadResearchSection() {
-        const researchContent = document.getElementById('researchContent');
-        if (!researchContent || !this.dataManager) return;
-
-        try {
-            const researchData = this.dataManager.getResearchData();
-            if (researchData) {
-                researchContent.innerHTML = this.generateResearchHTML(researchData);
-            } else {
-                researchContent.innerHTML = '<div class="loading">No research data available</div>';
-            }
-        } catch (error) {
-            researchContent.innerHTML = '<div class="loading">Failed to load research data</div>';
-        }
-    }
-
-    async loadFinancialSection() {
-        const financialContent = document.getElementById('financialContent');
-        if (!financialContent || !this.dataManager) return;
-
-        try {
-            const financialData = this.dataManager.getFinancialData();
-            if (financialData) {
-                financialContent.innerHTML = this.generateFinancialHTML(financialData);
-            } else {
-                financialContent.innerHTML = '<div class="loading">No financial data available</div>';
-            }
-        } catch (error) {
-            financialContent.innerHTML = '<div class="loading">Failed to load financial data</div>';
-        }
-    }
-
-    updateDashboardStats() {
-        // Update progress bar
-        const progressBar = document.querySelector('.progress-fill');
-        if (progressBar) {
-            const progress = progressBar.getAttribute('data-progress');
-            progressBar.style.width = `${progress}%`;
-        }
-    }
-
-    updateRecentActivities() {
-        // Activities are already in HTML, but could be dynamic
-        const activities = [
-            { time: '2 hours ago', desc: 'LiDAR calibration completed' },
-            { time: '5 hours ago', desc: 'Stochastic model training updated' },
-            { time: '1 day ago', desc: 'Campus mapping data collected' },
-            { time: '2 days ago', desc: 'NVIDIA AGX Orin integration tested' }
+    loadResearchContent() {
+        const contentArea = document.getElementById('researchContent');
+        const researchModules = [
+            { title: 'Stochastic Modeling', description: 'Pedestrian behavior prediction using probabilistic models', status: 'active', progress: 75 },
+            { title: 'Simulation Environment', description: 'RViz-based campus simulation with real-world data', status: 'complete', progress: 100 },
+            { title: 'Steering Subsystem', description: 'Advanced steering control for autonomous navigation', status: 'planning', progress: 25 },
+            { title: 'Braking System', description: 'Safety-critical braking system integration', status: 'planning', progress: 15 },
+            { title: 'Pedestrian Study', description: 'Behavioral data collection and analysis', status: 'active', progress: 60 },
+            { title: 'Sensor Fusion', description: 'Multi-modal sensor data fusion algorithms', status: 'active', progress: 80 }
         ];
-
-        const activityList = document.querySelector('.activity-list');
-        if (activityList) {
-            activityList.innerHTML = activities.map(activity => `
-                <div class="activity-item">
-                    <div class="activity-time">${activity.time}</div>
-                    <div class="activity-desc">${activity.desc}</div>
+        
+        contentArea.innerHTML = researchModules.map(module => `
+            <div class="research-card">
+                <div class="card-header">
+                    <h3>${module.title}</h3>
+                    <span class="status-badge ${module.status}">${module.status.charAt(0).toUpperCase() + module.status.slice(1)}</span>
                 </div>
-            `).join('');
-        }
-    }
-
-    generateTeamHTML(teamData) {
-        return teamData.map(member => `
-            <div class="team-card">
-                <h4>${member.name}</h4>
-                <div class="team-role">${member.role}</div>
-                <div class="team-department">${member.department}</div>
-                <div class="team-status ${member.status}">${member.status}</div>
+                <p>${module.description}</p>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${module.progress}%"></div>
+                    </div>
+                    <span class="progress-text">${module.progress}%</span>
+                </div>
             </div>
         `).join('');
     }
 
-    generateTimelineHTML(timelineData) {
-        return `
-            <div class="timeline">
-                ${timelineData.map(event => `
-                    <div class="timeline-item">
-                        <div class="timeline-date">${event.date}</div>
-                        <div class="timeline-content">
-                            <h4>${event.title}</h4>
-                            <p>${event.description}</p>
-                        </div>
-                    </div>
-                `).join('')}
+    loadEgoVehicleContent() {
+        const contentArea = document.getElementById('egoVehicleContent');
+        contentArea.innerHTML = `
+            <div class="research-card">
+                <h3>Vehicle Platform</h3>
+                <p>Mahindra Reva i based autonomous vehicle platform</p>
+            </div>
+            <div class="research-card">
+                <h3>Sensor Suite</h3>
+                <p>LiDAR, cameras, IMU/GNSS integration</p>
+            </div>
+            <div class="research-card">
+                <h3>Processing Unit</h3>
+                <p>NVIDIA AGX Orin for real-time processing</p>
             </div>
         `;
     }
 
-    generateResearchHTML(researchData) {
-        return `
-            <div class="research-grid">
-                <div class="research-card">
-                    <h4>Current Research</h4>
-                    <p>${researchData.current || 'Stochastic pedestrian behavior modeling'}</p>
-                </div>
-                <div class="research-card">
-                    <h4>Publications</h4>
-                    <p>${researchData.publications || '2 papers in progress'}</p>
-                </div>
-                <div class="research-card">
-                    <h4>Experiments</h4>
-                    <p>${researchData.experiments || 'Campus environment testing'}</p>
-                </div>
+    loadLearnContent() {
+        const contentArea = document.getElementById('learnContent');
+        contentArea.innerHTML = `
+            <div class="research-card">
+                <h3>Documentation</h3>
+                <p>Technical documentation and user guides</p>
+            </div>
+            <div class="research-card">
+                <h3>Tutorials</h3>
+                <p>Step-by-step learning materials</p>
             </div>
         `;
     }
 
-    generateFinancialHTML(financialData) {
-        return `
-            <div class="financial-card">
-                <h4>Budget Overview</h4>
-                <div class="budget-item">
-                    <span>Total Budget:</span>
-                    <span>₹${financialData.totalBudget || '500,000'}</span>
-                </div>
-                <div class="budget-item">
-                    <span>Spent:</span>
-                    <span>₹${financialData.spent || '375,000'}</span>
-                </div>
-                <div class="budget-item">
-                    <span>Remaining:</span>
-                    <span>₹${financialData.remaining || '125,000'}</span>
-                </div>
+    loadAdministrationContent() {
+        const contentArea = document.getElementById('administrationContent');
+        contentArea.innerHTML = `
+            <div class="research-card">
+                <h3>Project Management</h3>
+                <p>Administrative tools and resources</p>
             </div>
         `;
     }
 
-    getUserPermissions(role) {
-        const permissions = {
-            engineer: ['view_technical', 'view_timeline', 'view_gallery'],
-            professor: ['view_all', 'view_research', 'view_financial'],
-            lead: ['full_access', 'manage_team', 'edit_all']
-        };
-        return permissions[role] || [];
+    loadThesisContent() {
+        const contentArea = document.getElementById('thesisContent');
+        contentArea.innerHTML = `
+            <div class="research-card">
+                <h3>Thesis Development</h3>
+                <p>M.Tech thesis documentation and progress</p>
+            </div>
+        `;
     }
 
-    showComponentDetails(card) {
-        const title = card.querySelector('h4').textContent;
-        alert(`Component: ${title}\n\nDetailed information would be shown here.`);
+    loadSubmenuContent(mainMenu, submenu) {
+        console.log(`Loading ${mainMenu} -> ${submenu}`);
+        
+        if (mainMenu === 'ego-vehicle' && submenu === '3D Viewer') {
+            this.load3DViewer();
+        }
     }
 
-    filterGallery(filter) {
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        galleryItems.forEach(item => {
-            if (filter === 'all' || item.classList.contains(filter)) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
-        });
-    }
-
-    toggleMobileMenu() {
-        const sidebar = document.querySelector('.sidebar');
-        sidebar.classList.toggle('mobile-open');
-    }
-
-    handleLogout() {
-        if (confirm('Are you sure you want to logout?')) {
-            auth.logout();
+    load3DViewer() {
+        const contentArea = document.getElementById('egoVehicleContent');
+        contentArea.innerHTML = `
+            <div class="vehicle-viewer-container" style="grid-column: 1 / -1;">
+                <h3>3D Vehicle Viewer</h3>
+                <div id="vehicle3d" class="vehicle-3d" style="height: 500px; background: #000; border-radius: 10px; margin: 20px 0;"></div>
+                <div class="viewer-controls">
+                    <button id="resetView">Reset View</button>
+                    <button id="toggleWireframe">Wireframe</button>
+                    <button id="showComponents">Components</button>
+                </div>
+            </div>
+        `;
+        
+        if (typeof Vehicle3D !== 'undefined') {
+            setTimeout(() => {
+                this.vehicle3D = new Vehicle3D('vehicle3d');
+                this.vehicle3D.init();
+            }, 100);
         }
     }
 
@@ -555,16 +379,16 @@ class DashboardController {
     }
 
     showError(message) {
+        console.error('Platform Error:', message);
         alert('Error: ' + message);
     }
 }
 
-// Initialize dashboard when DOM is loaded
+// Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-    window.dashboard = new DashboardController();
+    window.mainController = new MainController();
 });
 
-// Export for use in other scripts
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = DashboardController;
+    module.exports = MainController;
 }

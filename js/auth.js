@@ -1,26 +1,69 @@
-// Authentication system for NITK EGO Vehicle Tracker
+// Simplified Authentication for NITK EGO Vehicle Platform
 class AuthSystem {
     constructor() {
         this.users = {
+            // Project Lead (Manish ES)
+            'manish.es': { 
+                password: 'lead2025', 
+                role: 'project_lead', 
+                name: 'Manish ES', 
+                department: 'Mechatronics'
+            },
+            
+            // Admin accounts
+            'admin': { 
+                password: 'admin2025', 
+                role: 'admin', 
+                name: 'System Administrator', 
+                department: 'Administration'
+            },
+            
             // Engineers
-            'manish.es': { password: 'ego2025', role: 'engineer', name: 'Manish ES', department: 'Mechatronics' },
-            'engineer1': { password: 'nitk123', role: 'engineer', name: 'Engineering Team', department: 'Electronics' },
-            'engineer2': { password: 'nitk123', role: 'engineer', name: 'Engineering Team', department: 'Software' },
+            'engineer1': { 
+                password: 'eng2025', 
+                role: 'engineer', 
+                name: 'Arjun Kumar', 
+                department: 'Electronics'
+            },
+            'engineer2': { 
+                password: 'eng2025', 
+                role: 'engineer', 
+                name: 'Priya Sharma', 
+                department: 'Computer Science'
+            },
             
-            // Professors
-            'prof.gangadharan': { password: 'prof2025', role: 'professor', name: 'Dr. K.V Gangadharan', department: 'Mechanical' },
-            'prof.pruthviraj': { password: 'prof2025', role: 'professor', name: 'Dr. Pruthviraj U', department: 'Mechanical' },
-            
-            // Project Lead
-            'lead.manish': { password: 'lead2025', role: 'lead', name: 'Project Lead', department: 'All Departments' }
+            // Interns/Volunteers
+            'intern1': { 
+                password: 'intern2025', 
+                role: 'intern', 
+                name: 'Sneha Reddy', 
+                department: 'Information Technology'
+            },
+            'volunteer1': { 
+                password: 'vol2025', 
+                role: 'volunteer', 
+                name: 'Volunteer User', 
+                department: 'General'
+            }
         };
         
         this.currentUser = null;
         this.initializeEventListeners();
     }
 
+    // Define which menus each role can see
+    getRoleMenus(role) {
+        const roleMenus = {
+            project_lead: ['RESEARCH', 'EGO-VEHICLE', 'LEARN', 'ADMINISTRATION', 'THESIS'],
+            admin: ['RESEARCH', 'EGO-VEHICLE', 'LEARN', 'ADMINISTRATION'],
+            engineer: ['RESEARCH', 'EGO-VEHICLE', 'LEARN'],
+            intern: ['EGO-VEHICLE', 'LEARN'],
+            volunteer: ['EGO-VEHICLE', 'LEARN']
+        };
+        return roleMenus[role] || ['EGO-VEHICLE', 'LEARN'];
+    }
+
     initializeEventListeners() {
-        // Wait for DOM to load
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => this.setupEvents());
         } else {
@@ -30,13 +73,10 @@ class AuthSystem {
 
     setupEvents() {
         const loginForm = document.getElementById('loginForm');
-        const errorMessage = document.getElementById('errorMessage');
-        
         if (loginForm) {
             loginForm.addEventListener('submit', (e) => this.handleLogin(e));
         }
 
-        // Add enter key support for better UX
         const inputs = document.querySelectorAll('input');
         inputs.forEach(input => {
             input.addEventListener('keypress', (e) => {
@@ -46,7 +86,6 @@ class AuthSystem {
             });
         });
 
-        // Check if user is already logged in
         this.checkExistingSession();
     }
 
@@ -56,18 +95,14 @@ class AuthSystem {
         const username = document.getElementById('username').value.trim();
         const password = document.getElementById('password').value;
         const selectedRole = document.querySelector('input[name="role"]:checked').value;
-        const errorMessage = document.getElementById('errorMessage');
         
-        // Clear previous error
         this.hideError();
         
-        // Validate inputs
         if (!username || !password) {
             this.showError('Please fill in all fields');
             return;
         }
 
-        // Authenticate user
         const user = this.authenticateUser(username, password, selectedRole);
         
         if (user) {
@@ -89,15 +124,12 @@ class AuthSystem {
     }
 
     loginSuccess(user) {
-        // Store user session
         this.currentUser = user;
         sessionStorage.setItem('currentUser', JSON.stringify(user));
         sessionStorage.setItem('loginTime', new Date().toISOString());
         
-        // Show success animation
         this.showLoginAnimation();
         
-        // Redirect to dashboard after animation
         setTimeout(() => {
             window.location.href = 'index.html';
         }, 1500);
@@ -105,7 +137,6 @@ class AuthSystem {
 
     showLoginAnimation() {
         const loginBtn = document.querySelector('.login-btn');
-        const originalText = loginBtn.innerHTML;
         
         loginBtn.innerHTML = `
             <span style="display: flex; align-items: center; justify-content: center; gap: 10px;">
@@ -115,37 +146,26 @@ class AuthSystem {
         `;
         
         loginBtn.style.background = 'linear-gradient(135deg, #00FF88, #00CC66)';
-        
-        // Add spin animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes spin {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-            }
-        `;
-        document.head.appendChild(style);
     }
 
     showError(message) {
         const errorElement = document.getElementById('errorMessage');
         errorElement.textContent = message;
         errorElement.style.display = 'block';
-        
-        // Auto hide error after 5 seconds
         setTimeout(() => this.hideError(), 5000);
     }
 
     hideError() {
         const errorElement = document.getElementById('errorMessage');
-        errorElement.style.display = 'none';
+        if (errorElement) {
+            errorElement.style.display = 'none';
+        }
     }
 
     addShakeAnimation() {
         const loginCard = document.querySelector('.login-card');
         loginCard.style.animation = 'shake 0.5s ease-in-out';
         
-        // Add shake keyframes if not exists
         if (!document.querySelector('#shake-styles')) {
             const style = document.createElement('style');
             style.id = 'shake-styles';
@@ -159,24 +179,20 @@ class AuthSystem {
             document.head.appendChild(style);
         }
         
-        // Remove animation after completion
         setTimeout(() => {
             loginCard.style.animation = 'slideUp 0.8s ease-out';
         }, 500);
     }
 
     checkExistingSession() {
-        // Check if on login page and user is already logged in
         if (window.location.pathname.includes('login.html')) {
             const user = sessionStorage.getItem('currentUser');
             if (user) {
-                // User is already logged in, redirect to dashboard
                 window.location.href = 'index.html';
             }
         }
     }
 
-    // Method to check authentication status (for other pages)
     isAuthenticated() {
         const user = sessionStorage.getItem('currentUser');
         const loginTime = sessionStorage.getItem('loginTime');
@@ -185,21 +201,10 @@ class AuthSystem {
             return false;
         }
         
-        // Check session timeout (24 hours)
-        const loginDate = new Date(loginTime);
-        const now = new Date();
-        const hoursSinceLogin = (now - loginDate) / (1000 * 60 * 60);
-        
-        if (hoursSinceLogin > 24) {
-            this.logout();
-            return false;
-        }
-        
         this.currentUser = JSON.parse(user);
         return true;
     }
 
-    // Get current user info
     getCurrentUser() {
         if (this.isAuthenticated()) {
             return this.currentUser;
@@ -207,7 +212,6 @@ class AuthSystem {
         return null;
     }
 
-    // Logout method
     logout() {
         sessionStorage.removeItem('currentUser');
         sessionStorage.removeItem('loginTime');
@@ -215,28 +219,12 @@ class AuthSystem {
         window.location.href = 'login.html';
     }
 
-    // Method to require authentication (call from other pages)
     requireAuth() {
         if (!this.isAuthenticated()) {
             window.location.href = 'login.html';
             return false;
         }
         return true;
-    }
-
-    // Get user role-based permissions
-    hasPermission(action) {
-        const user = this.getCurrentUser();
-        if (!user) return false;
-        
-        const permissions = {
-            engineer: ['view_technical', 'view_timeline', 'view_gallery', 'update_progress'],
-            professor: ['view_all', 'view_research', 'view_financial', 'generate_reports'],
-            lead: ['full_access', 'manage_team', 'edit_all', 'financial_control']
-        };
-        
-        const userPermissions = permissions[user.role] || [];
-        return userPermissions.includes(action) || userPermissions.includes('full_access');
     }
 }
 
