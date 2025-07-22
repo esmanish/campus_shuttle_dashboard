@@ -2,10 +2,10 @@
 class AuthSystem {
     constructor() {
         this.users = {
-            // Project Lead (Manish ES)
+            // Student Lead (Manish ES)
             'manish.es': { 
-                password: 'lead2025', 
-                role: 'project_lead', 
+                password: '7410', 
+                role: 'student_lead', 
                 name: 'Manish ES', 
                 department: 'Mechatronics'
             },
@@ -32,16 +32,16 @@ class AuthSystem {
                 department: 'Computer Science'
             },
             
-            // Interns/Volunteers
-            'intern1': { 
-                password: 'intern2025', 
-                role: 'intern', 
+            // Guests (Interns/Volunteers)
+            'guest1': { 
+                password: 'guest2025', 
+                role: 'guest', 
                 name: 'Sneha Reddy', 
                 department: 'Information Technology'
             },
-            'volunteer1': { 
-                password: 'vol2025', 
-                role: 'volunteer', 
+            'guest2': { 
+                password: 'guest2025', 
+                role: 'guest', 
                 name: 'Volunteer User', 
                 department: 'General'
             }
@@ -54,11 +54,10 @@ class AuthSystem {
     // Define which menus each role can see
     getRoleMenus(role) {
         const roleMenus = {
-            project_lead: ['RESEARCH', 'EGO-VEHICLE', 'LEARN', 'ADMINISTRATION', 'THESIS'],
+            student_lead: ['RESEARCH', 'EGO-VEHICLE', 'LEARN', 'ADMINISTRATION', 'THESIS'],
             admin: ['RESEARCH', 'EGO-VEHICLE', 'LEARN', 'ADMINISTRATION'],
             engineer: ['RESEARCH', 'EGO-VEHICLE', 'LEARN'],
-            intern: ['EGO-VEHICLE', 'LEARN'],
-            volunteer: ['EGO-VEHICLE', 'LEARN']
+            guest: ['EGO-VEHICLE', 'LEARN']
         };
         return roleMenus[role] || ['EGO-VEHICLE', 'LEARN'];
     }

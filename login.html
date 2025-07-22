@@ -3,22 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NITK Autonomous Systems Lab - Login</title>
+    <title>NITK Autonomous Systems Lab - Access Portal</title>
     <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
     <!-- Animated Background -->
     <div class="background-animation">
-        <div class="vehicle-wireframe"></div>
-        <div class="sensor-dots">
-            <div class="sensor-dot lidar"></div>
-            <div class="sensor-dot camera"></div>
-            <div class="sensor-dot imu"></div>
+        <div class="gear-system">
+            <div class="gear gear-large"></div>
+            <div class="gear gear-medium"></div>
+            <div class="gear gear-small"></div>
         </div>
-        <div class="data-streams">
-            <div class="stream stream-1"></div>
-            <div class="stream stream-2"></div>
-            <div class="stream stream-3"></div>
+        
+        <div class="vehicle-outline">
+            <div class="vehicle-body"></div>
+            <div class="sensor-array">
+                <div class="sensor sensor-1"></div>
+                <div class="sensor sensor-2"></div>
+                <div class="sensor sensor-3"></div>
+                <div class="sensor sensor-4"></div>
+            </div>
+        </div>
+        
+        <div class="grid-overlay">
+            <div class="grid-line horizontal"></div>
+            <div class="grid-line horizontal"></div>
+            <div class="grid-line horizontal"></div>
+            <div class="grid-line vertical"></div>
+            <div class="grid-line vertical"></div>
+            <div class="grid-line vertical"></div>
         </div>
     </div>
 
@@ -28,7 +41,7 @@
             <!-- Header -->
             <div class="login-header">
                 <h1>NITK</h1>
-                <h2>Autonomous Systems Lab</h2>
+                <h2>AUTONOMOUS SYSTEMS LAB</h2>
                 <p>EGO Vehicle Development Platform</p>
             </div>
 
@@ -36,38 +49,35 @@
             <form id="loginForm" class="login-form">
                 <div class="input-group">
                     <input type="text" id="username" required>
-                    <label for="username">Username</label>
+                    <label for="username">USERNAME</label>
                     <div class="input-line"></div>
                 </div>
 
                 <div class="input-group">
                     <input type="password" id="password" required>
-                    <label for="password">Password</label>
+                    <label for="password">PASSWORD</label>
                     <div class="input-line"></div>
                 </div>
 
                 <div class="role-selector">
-                    <label>Login as:</label>
+                    <label>ACCESS LEVEL</label>
                     <div class="role-options">
-                        <input type="radio" id="project_lead" name="role" value="project_lead">
-                        <label for="project_lead">Project Lead</label>
+                        <input type="radio" id="student_lead" name="role" value="student_lead">
+                        <label for="student_lead">STUDENT LEAD</label>
                         
                         <input type="radio" id="admin" name="role" value="admin">
-                        <label for="admin">Admin</label>
+                        <label for="admin">ADMIN</label>
                         
                         <input type="radio" id="engineer" name="role" value="engineer" checked>
-                        <label for="engineer">Engineer</label>
+                        <label for="engineer">ENGINEER</label>
                         
-                        <input type="radio" id="intern" name="role" value="intern">
-                        <label for="intern">Intern</label>
-                        
-                        <input type="radio" id="volunteer" name="role" value="volunteer">
-                        <label for="volunteer">Volunteer</label>
+                        <input type="radio" id="guest" name="role" value="guest">
+                        <label for="guest">GUEST</label>
                     </div>
                 </div>
 
                 <button type="submit" class="login-btn">
-                    <span>Access System</span>
+                    <span>ACCESS SYSTEM</span>
                     <div class="btn-animation"></div>
                 </button>
 
@@ -76,10 +86,10 @@
 
             <!-- Footer -->
             <div class="login-footer">
-                <p>NITK Surathkal • Autonomous Vehicle Research</p>
+                <p>NITK SURATHKAL • AUTONOMOUS VEHICLE RESEARCH</p>
                 <div class="status-indicator">
                     <span class="status-dot"></span>
-                    <span>System Online</span>
+                    <span>SYSTEM OPERATIONAL</span>
                 </div>
             </div>
         </div>

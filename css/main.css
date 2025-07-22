@@ -328,12 +328,6 @@ body {
     border-color: rgba(255, 255, 255, 0.15);
 }
 
-.card-icon {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    opacity: 0.8;
-}
-
 .overview-card h3 {
     font-size: 1.3rem;
     color: #ffffff;
@@ -442,12 +436,476 @@ body {
     font-weight: 300;
 }
 
-/* Content Grid */
-.content-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+/* EGO Vehicle Platform Styles */
+.ego-vehicle-layout {
+    display: flex;
+    flex-direction: column;
     gap: 40px;
-    margin-top: 60px;
+    margin-top: 0;
+}
+
+.main-display {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    gap: 30px;
+    height: 600px;
+}
+
+.vehicle-3d-container {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+}
+
+.viewer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.viewer-header h3 {
+    font-size: 1rem;
+    font-weight: 300;
+    color: #ffffff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.view-controls {
+    display: flex;
+    gap: 15px;
+}
+
+.view-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #888888;
+    padding: 8px 16px;
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.view-btn.active,
+.view-btn:hover {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.vehicle-3d-viewer {
+    flex: 1;
+    background: #000000;
+    position: relative;
+}
+
+.viewer-controls {
+    display: flex;
+    gap: 15px;
+    padding: 20px 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.viewer-controls button {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.viewer-controls button:hover {
+    background: #ffffff;
+    color: #000000;
+}
+
+.component-panel {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.panel-header h4 {
+    font-size: 1rem;
+    font-weight: 300;
+    color: #ffffff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.component-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.7rem;
+    color: #888888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.component-status .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ffffff;
+}
+
+.component-status .status-dot.active {
+    background: #ffffff;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.component-content {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.overview-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.stat-item label {
+    font-size: 0.7rem;
+    color: #888888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+.stat-item value {
+    font-size: 1.1rem;
+    color: #ffffff;
+    font-weight: 300;
+}
+
+.component-description {
+    color: #aaaaaa;
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+.sensor-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sensor-item {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.01);
+}
+
+.sensor-item h5 {
+    font-size: 0.8rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.sensor-specs {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.sensor-specs span {
+    font-size: 0.7rem;
+    color: #888888;
+    font-weight: 300;
+}
+
+.system-status {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.system-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.system-item label {
+    font-size: 0.7rem;
+    color: #888888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    min-width: 80px;
+    font-weight: 300;
+}
+
+.status-bar {
+    flex: 1;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+.status-fill {
+    height: 100%;
+    background: #ffffff;
+    transition: width 0.3s ease;
+}
+
+.system-item value {
+    font-size: 0.8rem;
+    color: #ffffff;
+    min-width: 40px;
+    font-weight: 300;
+}
+
+.control-systems {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.control-item h5 {
+    font-size: 0.8rem;
+    color: #ffffff;
+    margin-bottom: 8px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.control-item p {
+    font-size: 0.8rem;
+    color: #aaaaaa;
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+.performance-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.metric-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.metric-item label {
+    font-size: 0.7rem;
+    color: #888888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+.metric-item value {
+    font-size: 1rem;
+    color: #ffffff;
+    font-weight: 300;
+}
+
+.viewer-info {
+    color: #aaaaaa;
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+.viewer-tips {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tip {
+    font-size: 0.8rem;
+    color: #888888;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.tech-specs-section {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0;
+}
+
+.specs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.specs-header h3 {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #ffffff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.spec-tabs {
+    display: flex;
+    gap: 20px;
+}
+
+.spec-tab {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #888888;
+    padding: 10px 20px;
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.spec-tab.active,
+.spec-tab:hover {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.specs-content {
+    padding: 0;
+    max-height: 500px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+.specs-long-table {
+    display: flex;
+    flex-direction: column;
+}
+
+.spec-section {
+    padding: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.spec-section:last-child {
+    border-bottom: none;
+}
+
+.spec-section h4 {
+    font-size: 1rem;
+    font-weight: 300;
+    color: #ffffff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.specs-table {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.spec-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.spec-label {
+    font-size: 0.8rem;
+    color: #888888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+.spec-value {
+    font-size: 0.8rem;
+    color: #ffffff;
+    font-weight: 300;
+    text-align: right;
+}
+
+/* Responsive Design for EGO Vehicle */
+@media (max-width: 1024px) {
+    .main-display {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+    
+    .vehicle-3d-container {
+        height: 400px;
+    }
+    
+    .specs-table {
+        grid-template-columns: 1fr;
+    }
+    
+    .overview-stats,
+    .performance-metrics {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .specs-header {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+    
+    .spec-tabs {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .view-controls {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .viewer-controls {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
 }
 
 /* Research Cards */

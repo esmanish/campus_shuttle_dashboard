@@ -1,4 +1,4 @@
-/* Reset and Base Styles */
+/* Reset and Base Styles - SpaceX Login Theme */
 * {
     margin: 0;
     padding: 0;
@@ -6,11 +6,12 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    background: #0a0a0a;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: #000000;
     color: #ffffff;
     overflow: hidden;
     height: 100vh;
+    font-weight: 300;
 }
 
 /* Animated Background */
@@ -24,107 +25,183 @@ body {
     overflow: hidden;
 }
 
-.vehicle-wireframe {
+/* Gear System Animation */
+.gear-system {
+    position: absolute;
+    top: 20%;
+    left: 15%;
+    width: 400px;
+    height: 400px;
+}
+
+.gear {
+    position: absolute;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    background: transparent;
+}
+
+.gear::before {
+    content: '';
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 800px;
-    height: 400px;
     transform: translate(-50%, -50%);
-    border: 2px solid #00D4FF;
-    border-radius: 20px;
-    animation: pulse 4s ease-in-out infinite;
+    width: 60%;
+    height: 60%;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
 }
 
-.vehicle-wireframe::before {
+.gear::after {
     content: '';
     position: absolute;
-    top: 20%;
-    left: 10%;
-    width: 80%;
-    height: 60%;
-    border: 1px solid #00D4FF;
-    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20%;
+    height: 20%;
+    background: #ffffff;
+    border-radius: 50%;
 }
 
-.vehicle-wireframe::after {
+.gear-large {
+    width: 120px;
+    height: 120px;
+    top: 0;
+    left: 0;
+    animation: rotateClockwise 8s linear infinite;
+}
+
+.gear-medium {
+    width: 80px;
+    height: 80px;
+    top: 60px;
+    left: 100px;
+    animation: rotateCounterClockwise 6s linear infinite;
+}
+
+.gear-small {
+    width: 50px;
+    height: 50px;
+    top: 20px;
+    left: 140px;
+    animation: rotateClockwise 4s linear infinite;
+}
+
+/* Vehicle Outline */
+.vehicle-outline {
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 150px;
+}
+
+.vehicle-body {
+    width: 100%;
+    height: 60%;
+    border: 2px solid #ffffff;
+    border-radius: 15px;
+    position: relative;
+}
+
+.vehicle-body::before {
     content: '';
     position: absolute;
     top: -10px;
     left: 20%;
     width: 60%;
-    height: 20px;
-    border: 1px solid #00A5CC;
-    border-radius: 10px 10px 0 0;
+    height: 15px;
+    border: 1px solid #ffffff;
+    border-radius: 8px 8px 0 0;
 }
 
-.sensor-dots {
+.vehicle-body::after {
+    content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    bottom: -15px;
+    left: 15%;
+    width: 70%;
+    height: 10px;
+    border: 1px solid #ffffff;
 }
 
-.sensor-dot {
+.sensor-array {
     position: absolute;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    animation: sensorBlink 2s ease-in-out infinite;
-}
-
-.sensor-dot.lidar {
-    background: #00FF88;
-    top: -200px;
-    left: -10px;
-    animation-delay: 0s;
-}
-
-.sensor-dot.camera {
-    background: #FF4444;
-    top: -180px;
-    left: 100px;
-    animation-delay: 0.7s;
-}
-
-.sensor-dot.imu {
-    background: #FFAA00;
-    top: -150px;
-    left: -80px;
-    animation-delay: 1.4s;
-}
-
-.data-streams {
-    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
 }
 
-.stream {
+.sensor {
     position: absolute;
-    width: 2px;
-    height: 100px;
-    background: linear-gradient(to bottom, #00D4FF, transparent);
-    animation: dataFlow 3s linear infinite;
+    width: 8px;
+    height: 8px;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    background: #ffffff;
+    animation: sensorPulse 2s ease-in-out infinite;
 }
 
-.stream-1 {
-    top: 20%;
-    left: 15%;
+.sensor-1 {
+    top: 10px;
+    left: 50%;
     animation-delay: 0s;
 }
 
-.stream-2 {
-    top: 30%;
-    right: 20%;
+.sensor-2 {
+    top: 50%;
+    right: 10px;
+    animation-delay: 0.5s;
+}
+
+.sensor-3 {
+    bottom: 20px;
+    left: 50%;
     animation-delay: 1s;
 }
 
-.stream-3 {
-    bottom: 25%;
-    left: 70%;
-    animation-delay: 2s;
+.sensor-4 {
+    top: 50%;
+    left: 10px;
+    animation-delay: 1.5s;
 }
+
+/* Grid Overlay */
+.grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.grid-line {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, #ffffff, transparent);
+    opacity: 0.3;
+}
+
+.grid-line.horizontal {
+    width: 100%;
+    height: 1px;
+}
+
+.grid-line.vertical {
+    width: 1px;
+    height: 100%;
+}
+
+.grid-line.horizontal:nth-child(1) { top: 25%; }
+.grid-line.horizontal:nth-child(2) { top: 50%; }
+.grid-line.horizontal:nth-child(3) { top: 75%; }
+
+.grid-line.vertical:nth-child(4) { left: 25%; }
+.grid-line.vertical:nth-child(5) { left: 50%; }
+.grid-line.vertical:nth-child(6) { left: 75%; }
 
 /* Login Container */
 .login-container {
@@ -137,46 +214,51 @@ body {
 }
 
 .login-card {
-    background: rgba(15, 15, 15, 0.95);
+    background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 212, 255, 0.2);
-    border-radius: 20px;
-    padding: 40px;
-    width: 400px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0;
+    padding: 60px;
+    width: 450px;
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
     animation: slideUp 0.8s ease-out;
 }
 
 /* Header */
 .login-header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 
 .login-header h1 {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #00D4FF;
-    margin-bottom: 5px;
+    color: #ffffff;
+    margin-bottom: 10px;
+    letter-spacing: 3px;
 }
 
 .login-header h2 {
-    font-size: 1.2rem;
-    font-weight: 400;
+    font-size: 1rem;
+    font-weight: 300;
     color: #ffffff;
-    margin-bottom: 8px;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
 }
 
 .login-header p {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #888888;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 /* Form Styles */
 .login-form {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 30px;
 }
 
 .input-group {
@@ -185,31 +267,36 @@ body {
 
 .input-group input {
     width: 100%;
-    padding: 15px 0;
+    padding: 20px 0;
     background: transparent;
     border: none;
-    border-bottom: 2px solid #333333;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     color: #ffffff;
     font-size: 1rem;
+    font-weight: 300;
     outline: none;
     transition: all 0.3s ease;
+    letter-spacing: 1px;
 }
 
 .input-group label {
     position: absolute;
-    top: 15px;
+    top: 20px;
     left: 0;
-    font-size: 1rem;
-    color: #666666;
+    font-size: 0.9rem;
+    color: #888888;
     pointer-events: none;
     transition: all 0.3s ease;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .input-group input:focus + label,
 .input-group input:valid + label {
     top: -5px;
-    font-size: 0.8rem;
-    color: #00D4FF;
+    font-size: 0.7rem;
+    color: #ffffff;
 }
 
 .input-line {
@@ -217,8 +304,8 @@ body {
     bottom: 0;
     left: 0;
     width: 0;
-    height: 2px;
-    background: #00D4FF;
+    height: 1px;
+    background: #ffffff;
     transition: width 0.3s ease;
 }
 
@@ -228,20 +315,23 @@ body {
 
 /* Role Selector */
 .role-selector {
-    margin: 10px 0;
+    margin: 20px 0;
 }
 
 .role-selector > label {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #888888;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     display: block;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .role-options {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
 }
 
 .role-options input[type="radio"] {
@@ -249,44 +339,54 @@ body {
 }
 
 .role-options label {
-    padding: 8px 16px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid #333333;
-    border-radius: 20px;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
     transition: all 0.3s ease;
+    color: #888888;
 }
 
 .role-options input[type="radio"]:checked + label {
-    background: rgba(0, 212, 255, 0.2);
-    border-color: #00D4FF;
-    color: #00D4FF;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.role-options label:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
 }
 
 /* Login Button */
 .login-btn {
     position: relative;
-    background: linear-gradient(135deg, #00D4FF, #00A5CC);
-    border: none;
-    border-radius: 12px;
-    padding: 15px;
+    background: transparent;
+    border: 1px solid #ffffff;
     color: #ffffff;
-    font-size: 1rem;
-    font-weight: 600;
+    padding: 20px;
+    font-size: 0.9rem;
+    font-weight: 300;
     cursor: pointer;
     overflow: hidden;
     transition: all 0.3s ease;
-    margin-top: 10px;
+    margin-top: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .login-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+    background: #ffffff;
+    color: #000000;
 }
 
 .login-btn:active {
-    transform: translateY(0);
+    transform: scale(0.98);
 }
 
 .btn-animation {
@@ -305,43 +405,51 @@ body {
 
 /* Error Message */
 .error-message {
-    background: rgba(255, 68, 68, 0.1);
-    border: 1px solid #FF4444;
-    border-radius: 8px;
-    padding: 12px;
-    color: #FF6666;
-    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 300;
     display: none;
     text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 /* Footer */
 .login-footer {
-    margin-top: 30px;
+    margin-top: 40px;
     text-align: center;
-    padding-top: 20px;
-    border-top: 1px solid #222222;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .login-footer p {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     color: #666666;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .status-indicator {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    font-size: 0.8rem;
+    gap: 10px;
+    font-size: 0.7rem;
     color: #888888;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .status-dot {
     width: 6px;
     height: 6px;
-    background: #00FF88;
+    background: #ffffff;
     border-radius: 50%;
     animation: pulse 2s ease-in-out infinite;
 }
@@ -365,47 +473,78 @@ body {
     }
     50% {
         opacity: 1;
-        transform: scale(1.05);
+        transform: scale(1.2);
     }
 }
 
-@keyframes sensorBlink {
+@keyframes sensorPulse {
     0%, 100% {
         opacity: 0.3;
+        transform: scale(1);
     }
     50% {
         opacity: 1;
-        box-shadow: 0 0 15px currentColor;
+        transform: scale(1.5);
+        box-shadow: 0 0 10px #ffffff;
     }
 }
 
-@keyframes dataFlow {
-    0% {
-        transform: translateY(-100px);
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(100px);
-        opacity: 0;
-    }
+@keyframes rotateClockwise {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes rotateCounterClockwise {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-360deg); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
 }
 
 /* Responsive Design */
 @media (max-width: 480px) {
     .login-card {
         width: 90%;
-        padding: 30px 20px;
+        padding: 40px 30px;
     }
     
-    .vehicle-wireframe {
-        width: 300px;
-        height: 150px;
+    .gear-system {
+        width: 200px;
+        height: 200px;
+        top: 10%;
+        left: 5%;
+    }
+    
+    .gear-large {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .gear-medium {
+        width: 50px;
+        height: 50px;
+        top: 40px;
+        left: 60px;
+    }
+    
+    .gear-small {
+        width: 30px;
+        height: 30px;
+        top: 15px;
+        left: 90px;
+    }
+    
+    .vehicle-outline {
+        right: 5%;
+        width: 200px;
+        height: 100px;
     }
     
     .role-options {
-        justify-content: center;
+        grid-template-columns: 1fr;
     }
 }
